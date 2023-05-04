@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # editor files
 .vscode/
+
+# misc
+private/

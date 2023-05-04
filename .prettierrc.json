@@ -1,0 +1,21 @@
+{
+  "singleQuote": true,
+  "quoteProps": "consistent",
+  "arrowParens": "avoid",
+  "proseWrap": "always",
+  "pluginSearchDirs": false,
+  "plugins": [
+    "prettier-plugin-astro",
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ],
+  "organizeImportsSkipDestructiveCodeActions": true
+}
