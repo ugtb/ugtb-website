@@ -62,15 +62,15 @@ module.exports = {
     fontSize: {
       'H0-desktop': [
         '7rem',
-        { lineHeight: '0.9', letterSpacing: '-5%', fontWeight: '500' },
+        { lineHeight: '0.9', letterSpacing: '-0.375rem', fontWeight: '500' },
       ],
       'H0-mobile': [
         '5rem',
-        { lineHeight: '0.9', letterSpacing: '-5%', fontWeight: '500' },
+        { lineHeight: '0.9', letterSpacing: '-0.375rem', fontWeight: '500' },
       ],
       'H1-desktop': [
         '6rem',
-        { lineHeight: '1', letterSpacing: '-6%', fontWeight: '500' },
+        { lineHeight: '1', letterSpacing: '-0.375rem', fontWeight: '500' },
       ],
       'H2-desktop': [
         '4rem',
@@ -82,27 +82,27 @@ module.exports = {
       ],
       'H3-desktop': [
         '3.5rem',
-        { lineHeight: '0.9', letterSpacing: '-4%', fontWeight: '500' },
+        { lineHeight: '0.9', letterSpacing: '-0.125rem', fontWeight: '500' },
       ],
       'H3-mobile': [
         '3rem',
-        { lineHeight: '0.9', letterSpacing: '-4%', fontWeight: '500' },
+        { lineHeight: '0.9', letterSpacing: '-0.125rem', fontWeight: '500' },
       ],
       'H4-desktop': [
         '2.5rem',
-        { lineHeight: '1.2', letterSpacing: '-2%', fontWeight: '700' },
+        { lineHeight: '1.2', letterSpacing: '-0.05rem', fontWeight: '700' },
       ],
       'H4-mobile': [
         '2.5rem',
-        { lineHeight: '1.1', letterSpacing: '-2%', fontWeight: '700' },
+        { lineHeight: '1.1', letterSpacing: '-0.05rem', fontWeight: '700' },
       ],
       'H5-desktop': [
         '1.75rem',
-        { lineHeight: '1.4', letterSpacing: '-3%', fontWeight: '700' },
+        { lineHeight: '1.4', letterSpacing: '-0.05rem', fontWeight: '700' },
       ],
       'H5-mobile': [
         '1.5rem',
-        { lineHeight: '1.3', letterSpacing: '-3%', fontWeight: '700' },
+        { lineHeight: '1.3', letterSpacing: '-0.05rem', fontWeight: '700' },
       ],
 
       'xxl-400': [
@@ -134,9 +134,9 @@ module.exports = {
         { lineHeight: '1.6', letterSpacing: '0', fontWeight: '400' },
       ],
 
-      'button-900': [
+      'button': [
         '0.875rem',
-        { lineHeight: '1.2', letterSpacing: '1%', fontWeight: '900' },
+        { lineHeight: '1.2', letterSpacing: '0.125rem', fontWeight: '900' },
       ],
     },
     extend: {},

@@ -1,7 +1,12 @@
 ---
+import Button from '~/components/Button.astro';
+import Icon from '~/components/Icon.astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 ---
 
 <BaseLayout>
-  <h1 class="text-H0-desktop">Hello world!</h1>
+  <main class="container">
+    <h1 class="block text-H0-desktop">Hello world!</h1>
+    <Button variant="tetriary">Learn more</Button>
+  </main>
 </BaseLayout>

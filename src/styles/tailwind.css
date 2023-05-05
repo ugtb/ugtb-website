@@ -4,6 +4,14 @@
 
 @layer base {
   html {
-    @apply font-primary text-md-400;
+    @apply font-primary text-md-400 text-neutral-dark;
+  }
+
+  a {
+    @apply cursor-pointer select-none;
+  }
+
+  svg {
+    @apply block fill-current stroke-current;
   }
 }
