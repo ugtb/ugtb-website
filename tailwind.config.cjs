@@ -105,17 +105,17 @@ module.exports = {
         { lineHeight: '1.3', letterSpacing: '-0.05rem', fontWeight: '700' },
       ],
 
-      'xxl-400': [
+      'xxl-500': [
         '1.5rem',
         { lineHeight: '1.5', letterSpacing: '0', fontWeight: '500' },
       ],
-      'xl-700': [
+      'xl-500': [
         '1.25rem',
         { lineHeight: '1.4', letterSpacing: '0', fontWeight: '500' },
       ],
       'xl-400': [
         '1.25rem',
-        { lineHeight: '1.6', letterSpacing: '0', fontWeight: '500' },
+        { lineHeight: '1.6', letterSpacing: '0', fontWeight: '400' },
       ],
       'lg-700': [
         '1.125rem',
@@ -139,7 +139,18 @@ module.exports = {
         { lineHeight: '1.2', letterSpacing: '0.125rem', fontWeight: '900' },
       ],
     },
-    extend: {},
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1328px',
+    },
+    extend: {
+      spacing: {
+        18: '4.5rem',
+        30: '7.5rem',
+      },
+    },
   },
   plugins: [],
 };

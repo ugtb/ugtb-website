@@ -1,0 +1,72 @@
+---
+const navLinks = [
+  {
+    name: 'Послуги',
+    href: '/',
+  },
+  {
+    name: 'Магазин',
+    href: '/',
+  },
+  {
+    name: 'Проекти',
+    href: '/',
+  },
+  {
+    name: 'Про нас',
+    href: '/',
+  },
+  {
+    name: 'Контакти',
+    href: '/',
+  },
+];
+---
+
+<footer class="bg-brand pb-10 pt-16 text-white sm:pt-30">
+  <div class="container">
+    <div
+      class="mb-20 flex flex-col gap-16 md:mb-12 md:flex-row md:items-start md:justify-between md:gap-8"
+    >
+      <p
+        class="text-H5-mobile sm:border-l-4 sm:border-white sm:pl-18 sm:text-H4-desktop md:w-1/2"
+      >
+        Шукаєте надійного партнера для реалізації будівельних проектів?
+        Звертайтеся до нас!
+      </p>
+
+      <div class="flex flex-col gap-6">
+        <p class="text-n text-H5-desktop uppercase">ТОВ УКРГДРОТРАНСБУД</p>
+        <div>
+          <p class="mb-2 text-xxl-500">Адреса</p>
+          <p class="text-xl-400">02099, м.Київ</p>
+          <p class="text-xl-400">вул.Бориспільська, 9</p>
+        </div>
+        <div>
+          <p class="mb-2 text-xxl-500">Телефони</p>
+          <p class="text-xl-400">+38 067 695 37 76</p>
+          <p class="text-xl-400">+38 050 357 36 91</p>
+        </div>
+        <div>
+          <p class="mb-2 text-xxl-500">Email</p>
+          <p class="text-xl-400">ugtb2002@ukr.net</p>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white pt-12"></div>
+    <ul class="mb-12 flex flex-col gap-6 sm:mb-10 sm:flex-row sm:gap-8">
+      {
+        navLinks.map(navLink => (
+          <li>
+            <a class="text-md-700" href={navLink.href}>
+              {navLink.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="center text-sm-400 text-neutral-light">
+      Copyright © 2023 УКРГІДРОТРАНСБУД
+    </p>
+  </div>
+</footer>
