@@ -7,6 +7,10 @@
     @apply font-primary text-md-400 text-neutral-dark;
   }
 
+  body {
+    @apply overflow-x-hidden;
+  }
+
   a {
     @apply cursor-pointer select-none;
   }

@@ -11,19 +11,25 @@ const { variant = 'primary', class: className, ...props } = Astro.props;
 
 <a
   class:list={[
-    'group inline-flex items-center gap-6 px-6 py-4 text-button uppercase border border-solid',
+    'inline-flex items-center gap-6 px-6 py-4 text-button uppercase border border-solid',
     {
       'rounded bg-brand text-white border-brand': variant === 'primary',
       'rounded bg-white text-neutral-dark border-white':
         variant === 'secondary',
-      'rounded-full bg-transparent text-current border-current hover:text-brand transition-colors':
+      'group rounded-full bg-transparent text-current border-current hover:text-brand transition-colors':
         variant === 'tetriary',
     },
     className,
   ]}
   {...props}
-  ><slot /><Icon
-    class="h-6 w-6 transition-transform group-hover:translate-x-1"
-    name="right-arrow"
-  />
+>
+  <slot />
+  {
+    variant !== 'tetriary' && (
+      <Icon
+        class="h-6 w-6 transition-transform group-hover:translate-x-1"
+        name="right-arrow"
+      />
+    )
+  }
 </a>

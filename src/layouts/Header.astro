@@ -1,0 +1,26 @@
+---
+import BurgerButton from '~/components/BurgerButton.astro';
+import Button from '~/components/Button.astro';
+import Icon from '~/components/Icon.astro';
+import MobileMenu from '~/components/MobileMenu.astro';
+---
+
+<header
+  class="absolute inset-x-0 top-0 flex h-16 items-center border-b border-neutral text-white backdrop-blur sm:h-24"
+>
+  <div class="container flex items-center justify-between">
+    <a class="relative z-20 flex items-center gap-2" href="/">
+      <Icon class="h-8 w-8 sm:h-9 sm:w-9" name="logo" />
+      <span class="text-H5-mobile sm:text-H5-desktop">УГТБ</span>
+    </a>
+    <div class="flex items-center gap-8">
+      <a class="hidden text-md-700 lg:block" href="tel:+380676953776"
+        >+38 067 695 37 76</a
+      >
+      <Button class="hidden md:block" variant="tetriary" href="/">
+        Зв'язатися з нами
+      </Button>
+      <MobileMenu />
+    </div>
+  </div>
+</header>
