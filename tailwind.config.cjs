@@ -93,7 +93,7 @@ module.exports = {
         { lineHeight: '1.2', letterSpacing: '-0.05rem', fontWeight: '700' },
       ],
       'H4-mobile': [
-        '2.5rem',
+        '2.25rem',
         { lineHeight: '1.1', letterSpacing: '-0.05rem', fontWeight: '700' },
       ],
       'H5-desktop': [
@@ -115,6 +115,10 @@ module.exports = {
       ],
       'xl-400': [
         '1.25rem',
+        { lineHeight: '1.6', letterSpacing: '0', fontWeight: '400' },
+      ],
+      'lg-400': [
+        '1.125rem',
         { lineHeight: '1.6', letterSpacing: '0', fontWeight: '400' },
       ],
       'lg-700': [
@@ -149,7 +153,34 @@ module.exports = {
       spacing: {
         18: '4.5rem',
         30: '7.5rem',
+        78: '19.5rem',
+        88: '23rem',
       },
+      borderWidth: {
+        32: '32px',
+        48: '48px',
+      },
+      // maxWidth: {
+      //   'none': 'none',
+      //   '0': '0rem',
+      //   'xs': '20rem',
+      //   'sm': '24rem',
+      //   'md': '28rem',
+      //   'lg': '32rem',
+      //   'xl': '36rem',
+      //   '2xl': '42rem',
+      //   '3xl': '48rem',
+      //   '4xl': '56rem',
+      //   '5xl': '64rem',
+      //   '6xl': '72rem',
+      //   '7xl': '80rem',
+      //   'full': '100%',
+      //   'min': 'min-content',
+      //   'max': 'max-content',
+      //   'fit': 'fit-content',
+      //   'prose': '65ch',
+      //   ...breakpoints(theme('screens')),
+      // },
     },
   },
   plugins: [],

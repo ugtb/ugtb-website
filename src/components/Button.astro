@@ -19,6 +19,7 @@ const { variant = 'primary', class: className, ...props } = Astro.props;
       'rounded-full bg-transparent text-current border-current hover:text-brand transition-colors':
         variant === 'tetriary',
     },
+    className,
   ]}
   {...props}
   ><slot /><Icon

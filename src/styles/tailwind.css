@@ -14,4 +14,8 @@
   svg {
     @apply block fill-current stroke-current;
   }
+
+  address {
+    @apply not-italic;
+  }
 }
