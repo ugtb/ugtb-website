@@ -13,6 +13,7 @@
     "@astrojs/preact": "^2.1.0",
     "@fontsource/montserrat": "^4.5.14",
     "astro": "^2.4.0",
+    "countup.js": "^2.6.2",
     "nanoid": "^4.0.2",
     "preact": "^10.6.5"
   },

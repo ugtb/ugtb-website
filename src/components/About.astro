@@ -1,0 +1,47 @@
+---
+import Button from './Button.astro';
+import { Numbers } from './Numbers';
+const numbers = [
+  { name: 'Років на ринку', value: 20 },
+  { name: 'Завершених проектів', value: 510 },
+  { name: 'Задоволених клієнтів', value: 378 },
+  { name: 'Надійних партнерів', value: 50 },
+]; // інверсторів
+---
+
+<section class="relative bg-neutral-dark text-white">
+  <div
+    class="absolute inset-x-0 right-1/2 top-0 border-r-32 border-t-48 border-r-transparent border-t-brand lg:right-2/3"
+  >
+  </div>
+  <div class="container">
+    <div
+      class="pb-22 pt-22 sm:border-l sm:pb-30 md:border-neutral-light md:pt-44"
+    >
+      <p
+        class="mb-22 max-w-[200px] text-H3-mobile sm:mb-30 sm:max-w-full sm:border-l-4 sm:border-brand sm:px-18 sm:py-6"
+      >
+        Про <span class="text-brand">Компанію</span>
+      </p>
+      <div
+        class="max-w-[328px] sm:ml-auto md:max-w-[500px] lg:mb-16 lg:max-w-[728px]"
+      >
+        <div class="mb-10 grid grid-cols-2 lg:grid-cols-4">
+          {
+            numbers.map(number => (
+              <Numbers client:load name={number.name} value={number.value} />
+            ))
+          }
+        </div>
+        <p class="mb-14 text-xxl-500">
+          ТОВ "Укргідротрансбуд" має багаторічний досвід у сфері будівництва,
+          обслуговування та реконструкції об'єктів комунальної, транспортної та
+          промислової інфраструктури, забезпечуючи комплексні системні рішення.
+          Ми завжди відкриті до співпраці з тими, хто шукає надійного та
+          професійного партнера.
+        </p>
+        <Button variant="secondary">Дізнатись більше</Button>
+      </div>
+    </div>
+  </div>
+</section>

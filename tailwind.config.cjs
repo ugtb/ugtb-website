@@ -38,7 +38,7 @@ module.exports = {
         soft: '#f4f4f4',
         light: '#d9d9d9',
         DEFAULT: '#888888',
-        dark: '#1f1f1f',
+        dark: '#1f1f1e',
         50: '#f8f8f8',
         100: '#f4f4f4',
         200: '#e4e4e4',
@@ -152,15 +152,18 @@ module.exports = {
     extend: {
       spacing: {
         18: '4.5rem',
+        22: '5.5rem',
         30: '7.5rem',
         78: '19.5rem',
         88: '23rem',
+        128: '32rem',
       },
       borderWidth: {
         32: '32px',
         48: '48px',
       },
       // maxWidth: {
+
       //   'none': 'none',
       //   '0': '0rem',
       //   'xs': '20rem',
