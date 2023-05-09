@@ -1,12 +1,21 @@
 ---
 import Button from '~/components/Button.astro';
+import Card from '~/components/Card.astro';
 import Icon from '~/components/Icon.astro';
+import Section from '~/components/Section.astro';
+import Swiper from '~/components/Swiper.astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import Home from './Home.astro';
 ---
 
 <BaseLayout>
-  <main>
-    <Home />
-  </main>
+  <Home />
+  <Section
+    class="bg-neutral-dark pb-0 text-white"
+    title="Послуги компанії"
+    description="Having secured more than 200 MWp of solar projects within 5 years of operations since its establishment in 2016. We experienced in providing integrated solutions, from conception to construction including project siting and permitting, financing, market development and solar leasing."
+  >
+    <div class="container"></div>
+    <Swiper items={Array(10).fill(0)} />
+  </Section>
 </BaseLayout>

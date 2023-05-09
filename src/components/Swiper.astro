@@ -1,0 +1,63 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { nanoid } from 'nanoid';
+import 'swiper/css';
+import Button from './Button.astro';
+import Card from './Card.astro';
+
+interface Props extends HTMLAttributes<'div'> {
+  buttonText: string;
+  buttonHref: string;
+  items: any[];
+}
+
+const { title, buttonText, buttonHref, items, ...props } = Astro.props;
+
+const swiperIds = {
+  root: `swiper-root-${nanoid(8)}`,
+  prev: `swiper-prev-${nanoid(8)}`,
+  next: `swiper-next-${nanoid(8)}`,
+};
+---
+
+<div id={swiperIds.root} class="swiper" {...props}>
+  <ul class="swiper-wrapper">
+    {
+      items.map(item => (
+        <li class="swiper-slide">
+          <Card />
+        </li>
+      ))
+    }
+  </ul>
+
+  <div>
+    <div class="flex justify-between gap-4">
+      <button id={swiperIds.prev}>-</button>
+      <button id={swiperIds.next}>+</button>
+    </div>
+    <Button class="mt-12 sm:ml-18" href={buttonHref}>{buttonText}</Button>
+  </div>
+</div>
+
+<script type="module" define:vars={{ swiperIds }}>
+  import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.esm.browser.min.js';
+  const swiper = new Swiper(`#${swiperIds.root}`, {
+    cssMode: true,
+    grabCursor: true,
+    slidesPerView: 1,
+    spaceBetween: 24,
+    breakpoints: {
+      1024: {
+        slidesPerView: 2,
+      },
+      1328: {
+        slidesPerView: 3,
+      },
+    },
+    navigation: {
+      prevEl: `#${swiperIds.prev}`,
+      nextEl: `#${swiperIds.next}`,
+    },
+  });
+</script>

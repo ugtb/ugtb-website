@@ -1,0 +1,84 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import Button from './Button.astro';
+
+interface Props extends HTMLAttributes<'a'> {
+  variant?: 'default' | 'small' | 'image';
+  title: string;
+  tag1?: string;
+  tag2?: string;
+  src: string;
+}
+
+const {
+  variant = 'default',
+  title,
+  tag1,
+  tag2,
+  src,
+  href,
+  class: className,
+  ...props
+} = Astro.props;
+---
+
+{
+  variant === 'image' ? (
+    <a
+      class:list={[
+        'group relative block shadow-2 bg-neutral-soft h-[420px] sm:h-[520px]',
+        className,
+      ]}
+      href={href}
+      {...props}
+    >
+      <img class="absolute inset-x-0 inset-y-0" src={src} alt={title} />
+      <div class="bg-neutral-soft absolute inset-x-0 inset-y-0 flex flex-col justify-between gap-4 bg-opacity-40 px-8 py-10 opacity-0 transition-opacity group-hover:opacity-100 sm:gap-8 sm:px-12 sm:py-16">
+        <h3 class="text-H5-mobile sm:text-H5-desktop">{title}</h3>
+        <div class="mt-4 flex items-center justify-between gap-4">
+          <p class="text-xl-500 text-brand">{tag1}</p>
+          <p class="text-md-700 text-neutral uppercase">{tag2}</p>
+        </div>
+      </div>
+    </a>
+  ) : variant === 'small' ? (
+    <a
+      class:list={['group block shadow-2 bg-white pl-6 sm:pl-12', className]}
+      href={href}
+      {...props}
+    >
+      <div class="bg-neutral-soft relative h-[192px] [clip-path:polygon(0_calc(100%-64px),40px_100%,100%_100%,100%_0,0_0)]">
+        <img class="absolute inset-x-0 inset-y-0" src={src} alt={title} />
+      </div>
+      <div class="pb-12 pr-6 pt-8 sm:pr-12">
+        <h3 class="text-H5-mobile group-hover:text-brand sm:text-H5-desktop">
+          {title}
+        </h3>
+        {(tag1 || tag2) && (
+          <div class="mt-4 flex items-center justify-between gap-4">
+            <p class="text-brand">{tag1}</p>
+            <p class="text-neutral uppercase">{tag2}</p>
+          </div>
+        )}
+      </div>
+    </a>
+  ) : (
+    <div class:list={['block bg-white shadow-2 pl-6 sm:pl-12', className]}>
+      <div class="bg-neutral-soft relative h-[288px] [clip-path:polygon(0_calc(100%-64px),40px_100%,100%_100%,100%_0,0_0)] sm:h-[352px]">
+        <img class="absolute inset-x-0 inset-y-0" src={src} alt={title} />
+      </div>
+      <div class="pb-12 pr-6 pt-8 sm:pr-12">
+        <h3 class="text-H5-mobile sm:text-H5-desktop">{title}</h3>
+        {(tag1 || tag2) && (
+          <div class="mt-4 flex items-center justify-between gap-4">
+            <p class="text-brand">{tag1}</p>
+            <p class="text-neutral uppercase">{tag2}</p>
+          </div>
+        )}
+        <Button class="mt-8" variant="tetriary" href={href} {...props}>
+          Детальніше
+        </Button>
+      </div>
+    </div>
+  )
+}

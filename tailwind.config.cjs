@@ -57,7 +57,7 @@ module.exports = {
       padding: '24px',
     },
     fontFamily: {
-      primary: ['Monserrat', ...defaultTheme.fontFamily.sans],
+      primary: ['Raleway', ...defaultTheme.fontFamily.sans],
     },
     fontSize: {
       'H0-desktop': [
@@ -131,7 +131,7 @@ module.exports = {
       ],
       'md-400': [
         '1rem',
-        { lineHeight: '1.6', letterSpacing: '0', fontWeight: '700' },
+        { lineHeight: '1.6', letterSpacing: '0', fontWeight: '400' },
       ],
       'sm-400': [
         '0.875rem',
