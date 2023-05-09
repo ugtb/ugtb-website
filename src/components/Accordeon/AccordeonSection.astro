@@ -1,7 +1,10 @@
-<!-- ---
-import Button from './Button.astro';
-import ButtonIcon from './ButtonIcon.astro';
+---
+// import Button from './Button.astro';
+// import ButtonIcon from './ButtonIcon.astro';
 // import GoodsGallery from './GoodsGallery';
+
+import { AccordeonCard } from './AccordeonCard';
+import { AccordeonGallery } from './AccordeonGallery';
 ---
 
 <section class="relative bg-neutral-dark text-white">
@@ -27,4 +30,18 @@ import ButtonIcon from './ButtonIcon.astro';
         <!-- <div class="flex justify-between sm:pl-18 lg:hidden">
           <ButtonIcon variant="line" icon="left" />
           <ButtonIcon variant="line" icon="right" />
-        </div> -->-->
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <AccordeonGallery />
+  <!-- <AccordeonCard
+    item={{
+      id: '02',
+      name: 'Клейові суміші',
+      subname: 'Polimin - BauGut',
+      description:
+        "Довговічність будь-якого будівельного об'єкта багато в чому залежить від його гідроізоляції. Ми пропонуємо індивідуальні рішення навіть для самих складних проектів. Ми консультуємо і супроводжуємо клієнтів при застосуванні гідроізоляційних матеріалів.",
+    }}
+  /> -->
+</section>

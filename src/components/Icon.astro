@@ -1,14 +1,20 @@
 ---
 interface Props {
-  class?: string;
-  name: string;
-  size?: number;
+  'class'?: string;
+  'class:list'?: string;
+  'name': string;
+  'size'?: number;
 }
 
-const { class: className, name, size = 24 } = Astro.props;
+const {
+  'class': className,
+  'class:list': classList,
+  name,
+  size = 24,
+} = Astro.props;
 const href = `icons.svg#${name}`;
 ---
 
-<svg class:list={className} width={size} height={size}
+<svg class={className} class:list={classList} width={size} height={size}
   ><use xlink:href={href}></use></svg
 >

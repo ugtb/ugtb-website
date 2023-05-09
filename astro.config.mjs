@@ -7,5 +7,11 @@ export default defineConfig({
   experimental: {
     assets: true,
   },
-  integrations: [preact(), tailwind({ config: { applyBaseStyles: false } })],
+  integrations: [
+    preact({ compat: true }),
+    tailwind({ config: { applyBaseStyles: false } }),
+  ],
+  vite: {
+    ssr: { noExternal: ['@formkit/auto-animate'] },
+  },
 });
