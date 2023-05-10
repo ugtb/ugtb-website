@@ -12,9 +12,10 @@
   "dependencies": {
     "@astrojs/preact": "^2.1.0",
     "@fontsource/montserrat": "^4.5.14",
-    "@formkit/auto-animate": "1.0.0-beta.6",
     "@fontsource/raleway": "^4.5.12",
+    "@formkit/auto-animate": "1.0.0-beta.6",
     "astro": "^2.4.0",
+    "clsx": "^1.2.1",
     "countup.js": "^2.6.2",
     "nanoid": "^4.0.2",
     "preact": "^10.6.5",

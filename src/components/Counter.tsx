@@ -4,27 +4,24 @@ type NubmersProps = {
   name: string;
   value: number;
 };
-export const Counter = ({ name, value }: NubmersProps) => {
+export default function Counter({ name, value }: NubmersProps) {
   const valueRef = useRef(null);
 
   useEffect(() => {
+    const initCountUp = async () => {
+      const countUpModule = await import('countup.js');
+      new countUpModule.CountUp(valueRef.current, value, {
+        startVal,
+        suffix,
+        enableScrollSpy: true,
+        scrollSpyOnce: true,
+      });
+    };
     initCountUp();
   }, []);
 
   const startVal = Math.floor(value / 2);
   const suffix = `${value < 100 ? '+' : ''}`;
-
-  const initCountUp = async () => {
-    const countUpModule = await import('countup.js');
-
-    const countUpAnim = new countUpModule.CountUp(valueRef.current, value, {
-      startVal,
-      suffix,
-      enableScrollSpy: true,
-      scrollSpyOnce: true,
-      // scrollSpyDelay: 500,
-    });
-  };
 
   return (
     <div id="numbers" class="flex w-min flex-col justify-between">
@@ -34,4 +31,4 @@ export const Counter = ({ name, value }: NubmersProps) => {
       </p>
     </div>
   );
-};
+}

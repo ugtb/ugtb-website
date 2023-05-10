@@ -4,7 +4,8 @@ import AccordeonSection from '~/components/Accordeon/AccordeonSection.astro';
 import Container from '~/components/Container.astro';
 import Hero from '~/components/Hero.astro';
 import Section from '~/components/Section.astro';
-import Swiper from '~/components/Swiper.astro';
+import Swiper from '~/components/Swiper';
+import { demoGoods } from '~/constants';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 ---
 
@@ -16,7 +17,8 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
   <Section class="bg-neutral-light" title="Послуги компанії">
     <Container class="pb-20 lg:pb-30" left="md">
       <Swiper
-        items={Array(10).fill(0)}
+        client:load
+        cardsInfo={demoGoods}
         cardVariant="default"
         linkText="Всі послуги"
         linkHref="/"
@@ -27,7 +29,8 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
   <Section title="Проекти компанії">
     <Container class="pb-20 lg:pb-30" left="md">
       <Swiper
-        items={Array(10).fill(0)}
+        client:only="preact"
+        cardsInfo={demoGoods}
         cardVariant="image"
         navVariant="brand"
         linkText="Всі проекти"

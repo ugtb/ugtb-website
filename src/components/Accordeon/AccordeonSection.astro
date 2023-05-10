@@ -1,7 +1,8 @@
 ---
 import Container from '~/components/Container.astro';
 import Section from '~/components/Section.astro';
-import { AccordeonGallery } from './AccordeonGallery';
+import { demoGoods } from '~/constants';
+import AccordeonGallery from './AccordeonGallery';
 ---
 
 <Section
@@ -10,6 +11,6 @@ import { AccordeonGallery } from './AccordeonGallery';
   description="Купити матеріали ви зможете у нашому інтернет-магазині за прийнятною ціною. Ми пропонуємо широкий асортимент праймерів та ізоляційних сумішей, штукатурок, рулонів, мастик і сумішей. Купуючи у нас, ви отримуєте недорогі та якісні гідроізоляційні матеріали від перевірених виробників, здатні на 100% впоратися зі своїми виробничими завданнями!"
 >
   <Container>
-    <AccordeonGallery client:load />
+    <AccordeonGallery client:idle cardsInfo={demoGoods} />
   </Container>
 </Section>

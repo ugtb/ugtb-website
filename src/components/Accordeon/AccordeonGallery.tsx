@@ -1,57 +1,43 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { useRef, useState } from 'react';
-
+import { demoGoods } from '~/constants';
 import type { AccordeoItem } from '~/types';
-import { AccordeonButton } from './AccordeonButton.tsx';
-import { AccordeonCard } from './AccordeonCard';
-// import { GoodDescription } from './GoodDescription.tsx';
+import ButtonIcon, { type ButtonIconProps } from '../ButtonIcon';
+import ButtonLink, { type ButtonLinkProps } from '../ButtonLink';
+import Card, { type CardProps } from '../Card';
+import AccordeonButton from './AccordeonButton.tsx';
 
-const accordeonItems: AccordeoItem[] = [
-  {
-    id: '01',
-    name: 'Штукатурки',
-    subname: 'Cerecit - Knauf',
-    description:
-      "Довговічність будь-якого будівельного об'єкта багато в чому залежить від його гідроізоляції. Ми пропонуємо індивідуальні рішення навіть для самих складних проектів. Ми консультуємо і супроводжуємо клієнтів при застосуванні гідроізоляційних матеріалів.",
-  },
-  {
-    id: '02',
-    name: 'Клейові суміші',
-    subname: 'Polimin - BauGut',
-    description:
-      "Довговічність будь-якого будівельного об'єкта багато в чому залежить від його гідроізоляції. Ми пропонуємо індивідуальні рішення навіть для самих складних проектів. Ми консультуємо і супроводжуємо клієнтів при застосуванні гідроізоляційних матеріалів.",
-  },
-  {
-    id: '03',
-    name: 'Ремонтні суміші',
-    subname: 'Siltek',
-    description:
-      "Довговічність будь-якого будівельного об'єкта багато в чому залежить від його гідроізоляції. Ми пропонуємо індивідуальні рішення навіть для самих складних проектів. Ми консультуємо і супроводжуємо клієнтів при застосуванні гідроізоляційних матеріалів.",
-  },
-  {
-    id: '04',
-    name: 'Гідроізоляційні суміші',
-    subname: 'BudMajster - Sika - Grover',
-    description:
-      "Довговічність будь-якого будівельного об'єкта багато в чому залежить від його гідроізоляції. Ми пропонуємо індивідуальні рішення навіть для самих складних проектів. Ми консультуємо і супроводжуємо клієнтів при застосуванні гідроізоляційних матеріалів.",
-  },
-];
+interface AccordeonGalleryProps {
+  cardsInfo: CardProps['info'][];
+  cardVariant?: CardProps['variant'];
+  navVariant?: ButtonIconProps['variant'];
+  linkText: string;
+  linkHref: string;
+  linkVariant?: ButtonLinkProps['variant'];
+}
 
-export const AccordeonGallery = () => {
-  const [currentGood, setCurrentGood] = useState(accordeonItems[3]);
-  const [parent, enableAnimations] = useAutoAnimate(/* optional config */);
+export default function AccordeonGallery({
+  cardsInfo,
+  cardVariant = 'accordion',
+  navVariant,
+  linkText,
+  linkHref,
+  linkVariant,
+}) {
+  const [currentIndex, setCurrentIndex] = useState(cardsInfo.length - 1);
+  const [parent, enableAnimations] = useAutoAnimate();
 
   return (
     <div class="text-white sm:border-l sm:border-l-neutral">
       <div ref={parent} class="sm:flex sm:gap-px">
-        {accordeonItems.map(item =>
-          item.id === currentGood.id ? (
-            <AccordeonCard item={item} />
+        {demoGoods.map((info, i) =>
+          currentIndex === i ? (
+            <Card info={info} variant={cardVariant} />
           ) : (
-            <AccordeonButton onClick={() => setCurrentGood(item)} item={item} />
+            <AccordeonButton {...info} onClick={() => setCurrentIndex(i)} />
           )
         )}
       </div>
     </div>
   );
-};
+}
