@@ -1,13 +1,14 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import IconName from '~/types';
 import Icon from './Icon.astro';
 
 interface Props extends HTMLAttributes<'button'> {
-  icon: 'left' | 'right';
-  variant: 'normal' | 'line';
+  icon: IconName;
+  variant?: 'white' | 'brand';
 }
 const {
-  variant = 'normal',
+  variant = 'white',
   icon = 'left',
   class: className,
   ...props
@@ -16,17 +17,15 @@ const {
 
 <button
   class:list={[
-    'inline-flex items-center justify-center p-2.5 border-white border-2 rounded-full border-opacity-1 hover:border-opacity-40',
+    'inline-flex items-center justify-center p-2.5 border-2 rounded-full disabled:opacity-50',
     {
-      'bg-white bg-opacity-1 hover:bg-opacity-40 text-brand':
-        variant === 'normal',
-      'bg-transparent text-white  ': variant === 'line',
+      'text-white bg-transparent border-white hover:enabled:text-brand hover:enabled:bg-white':
+        variant === 'white',
+      'text-brand bg-transparent border-brand hover:enabled:text-white hover:enabled:bg-brand':
+        variant === 'brand',
     },
   ]}
   {...props}
 >
-  <Icon
-    class:list={['h-4 w-4 fill-current', { 'rotate-180': icon === 'right' }]}
-    name="back-arrow"
-  />
+  <Icon name={icon} size={16} />
 </button>

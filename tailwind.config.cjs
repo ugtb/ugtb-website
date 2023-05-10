@@ -8,13 +8,13 @@ module.exports = {
     blur: {
       DEFAULT: '100px',
     },
-    boxShadow: {
-      none: 'none',
-      1: '0px 52px 44px rgba(136, 136, 134, 0.2)',
-      2: '0px 20px 20px rgba(187, 187, 186, 0.2)',
-      3: '0px 60px 68px rgba(31, 31, 30, 0.08)',
-      4: '-56px 36px 44px rgba(31, 31, 30, 0.04)',
-    },
+    // boxShadow: {
+    //   none: 'none',
+    //   1: '0px 52px 44px rgba(136, 136, 134, 0.2)',
+    //   2: '0px 20px 20px rgba(187, 187, 186, 0.2)',
+    //   3: '0px 60px 68px rgba(31, 31, 30, 0.08)',
+    //   4: '-56px 36px 44px rgba(31, 31, 30, 0.04)',
+    // },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
@@ -54,7 +54,6 @@ module.exports = {
     },
     container: {
       center: true,
-      padding: '24px',
     },
     fontFamily: {
       primary: ['Raleway', ...defaultTheme.fontFamily.sans],
@@ -144,46 +143,30 @@ module.exports = {
       ],
     },
     screens: {
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1328px',
+      sm: '768px', // change layout (mobile => desktop)
+      md: '1024px', // change container px (mobile => desktop)
+      lg: '1200px', // change fonts and py (mobile => desktop)
+      xl: '1440px', // container max width
     },
     extend: {
-      spacing: {
-        18: '4.5rem',
-        22: '5.5rem',
-        30: '7.5rem',
-        78: '19.5rem',
-        88: '23rem',
-        128: '32rem',
+      backgroundImage: {
+        'hero': "url('')",
+        'logo-white': "url('/bg-logo-white.svg')",
+        'logo-dark': "url('/bg-logo-dark.svg')",
       },
       borderWidth: {
         32: '32px',
         48: '48px',
       },
-      // maxWidth: {
-
-      //   'none': 'none',
-      //   '0': '0rem',
-      //   'xs': '20rem',
-      //   'sm': '24rem',
-      //   'md': '28rem',
-      //   'lg': '32rem',
-      //   'xl': '36rem',
-      //   '2xl': '42rem',
-      //   '3xl': '48rem',
-      //   '4xl': '56rem',
-      //   '5xl': '64rem',
-      //   '6xl': '72rem',
-      //   '7xl': '80rem',
-      //   'full': '100%',
-      //   'min': 'min-content',
-      //   'max': 'max-content',
-      //   'fit': 'fit-content',
-      //   'prose': '65ch',
-      //   ...breakpoints(theme('screens')),
-      // },
+      spacing: {
+        18: '4.5rem',
+        22: '5.5rem',
+        30: '7.5rem',
+        68: '17rem',
+        78: '19.5rem',
+        88: '23rem',
+        128: '32rem',
+      },
     },
   },
   plugins: [],

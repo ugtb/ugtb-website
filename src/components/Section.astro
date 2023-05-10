@@ -1,34 +1,44 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import Container from './Container.astro';
 
 interface Props extends HTMLAttributes<'section'> {
   title: string;
   description?: string;
-  hasContainer?: boolean;
+  slotInside?: boolean;
 }
 
-const { title, description, hasContainer, ...props } = Astro.props;
+const { title, description, slotInside, ...props } = Astro.props;
 ---
 
 <section {...props}>
-  <div class="container">
-    <div class="pb-20 pt-10 sm:border-l sm:border-l-neutral sm:py-30">
-      <div
-        class="mb:20 flex flex-col gap-20 sm:mb-30 sm:flex-row sm:items-start sm:justify-between sm:border-l-4 sm:border-l-brand"
+  <Container
+    class:list={[
+      'pt-10 lg:pt-30',
+      {
+        'pb-20 lg:pb-30': slotInside,
+      },
+    ]}
+    left="md"
+    right="sm"
+  >
+    <div
+      class="flex flex-col gap-20 pb-20 sm:flex-row sm:items-start sm:justify-between lg:pb-30"
+    >
+      <h2
+        class="relative text-H3-mobile md:py-6 md:before:absolute md:before:inset-y-0 md:before:left-0 md:before:block md:before:w-[5px] md:before:-translate-x-[75px] md:before:bg-brand lg:text-H3-desktop"
       >
-        <h2 class="text-H3-mobile sm:py-6 sm:pl-16 sm:text-H3-desktop">
-          {
-            title
-              .split(' ')
-              .map(word => (
-                <span class="even:text-brand capitalize">{word + ' '}</span>
-              ))
-          }
-        </h2>
-        {description && <p class="text-md-400 max-w-md">{description}</p>}
-      </div>
+        {
+          title
+            .split(' ')
+            .map(word => (
+              <span class="even:text-brand capitalize">{word + ' '}</span>
+            ))
+        }
+      </h2>
+      {description && <p class="text-md-400 max-w-md">{description}</p>}
     </div>
-    {hasContainer && <slot />}
-  </div>
-  {!hasContainer && <slot />}
+    {slotInside && <slot />}
+  </Container>
+  {!slotInside && <slot />}
 </section>

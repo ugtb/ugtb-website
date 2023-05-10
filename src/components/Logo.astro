@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import Icon from './Icon.astro';
+
+interface Props extends HTMLAttributes<'a'> {}
+
+const {
+  'class': className,
+  'class:list': classList,
+  href = '/',
+  ...props
+} = Astro.props;
+---
+
+<a
+  class:list={[
+    'flex items-center gap-2 text-H5-mobile lg:text-H5-desktop uppercase',
+    classList,
+    className,
+  ]}
+  href={href}
+  {...props}
+>
+  <Icon class="shrink-0" size={28} name="logo" />
+  <slot />
+</a>

@@ -1,8 +1,10 @@
 ---
+import IconName from '~/types'
+
 interface Props {
   'class'?: string;
   'class:list'?: string;
-  'name': string;
+  'name': IconName;
   'size'?: number;
 }
 
@@ -12,9 +14,10 @@ const {
   name,
   size = 24,
 } = Astro.props;
+
 const href = `icons.svg#${name}`;
 ---
 
-<svg class={className} class:list={classList} width={size} height={size}
-  ><use xlink:href={href}></use></svg
->
+<svg class={className} class:list={classList} width={size} height={size}>
+  <use xlink:href={href}></use>
+</svg>

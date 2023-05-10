@@ -42,23 +42,15 @@ export const AccordeonGallery = () => {
   const [parent, enableAnimations] = useAutoAnimate(/* optional config */);
 
   return (
-    <div class="bg-neutral text-white sm:bg-neutral-dark">
-      <div class="container sm:pr-0">
-        <div
-          ref={parent}
-          class="sm:border-l sm:border-neutral-light sm:pl-18 lg:flex lg:pl-0"
-        >
-          {accordeonItems.map(item =>
-            item.id === currentGood.id ? (
-              <AccordeonCard item={item} />
-            ) : (
-              <AccordeonButton
-                onClick={() => setCurrentGood(item)}
-                item={item}
-              />
-            )
-          )}
-        </div>
+    <div class="text-white sm:border-l sm:border-l-neutral">
+      <div ref={parent} class="sm:flex sm:gap-px">
+        {accordeonItems.map(item =>
+          item.id === currentGood.id ? (
+            <AccordeonCard item={item} />
+          ) : (
+            <AccordeonButton onClick={() => setCurrentGood(item)} item={item} />
+          )
+        )}
       </div>
     </div>
   );

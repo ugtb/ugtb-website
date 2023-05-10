@@ -1,21 +1,38 @@
 ---
-import Button from '~/components/Button.astro';
-import Card from '~/components/Card.astro';
-import Icon from '~/components/Icon.astro';
+import About from '~/components/About.astro';
+import AccordeonSection from '~/components/Accordeon/AccordeonSection.astro';
+import Container from '~/components/Container.astro';
+import Hero from '~/components/Hero.astro';
 import Section from '~/components/Section.astro';
 import Swiper from '~/components/Swiper.astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
-import Home from './Home.astro';
 ---
 
 <BaseLayout>
-  <Home />
-  <Section
-    class="bg-neutral-dark pb-0 text-white"
-    title="Послуги компанії"
-    description="Having secured more than 200 MWp of solar projects within 5 years of operations since its establishment in 2016. We experienced in providing integrated solutions, from conception to construction including project siting and permitting, financing, market development and solar leasing."
-  >
-    <div class="container"></div>
-    <Swiper items={Array(10).fill(0)} />
+  <Hero />
+  <About />
+  <AccordeonSection />
+
+  <Section class="bg-neutral-light" title="Послуги компанії">
+    <Container class="pb-20 lg:pb-30" left="md">
+      <Swiper
+        items={Array(10).fill(0)}
+        cardVariant="default"
+        linkText="Всі послуги"
+        linkHref="/"
+      />
+    </Container>
+  </Section>
+
+  <Section title="Проекти компанії">
+    <Container class="pb-20 lg:pb-30" left="md">
+      <Swiper
+        items={Array(10).fill(0)}
+        cardVariant="image"
+        navVariant="brand"
+        linkText="Всі проекти"
+        linkHref="/"
+      />
+    </Container>
   </Section>
 </BaseLayout>

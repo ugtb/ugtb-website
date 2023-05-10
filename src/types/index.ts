@@ -11,3 +11,5 @@ export interface AccordeoItem {
   subname: string;
   description: string;
 }
+
+export type IconName = 'logo' | 'prev-arrow' | 'next-arrow' | 'right-arrow';

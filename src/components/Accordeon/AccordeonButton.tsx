@@ -10,7 +10,7 @@ export const AccordeonButton = ({ item, onClick }: AccordeonButtonProps) => {
   return (
     <button
       onClick={onClick}
-      class="hidden items-stretch justify-end gap-6 border-b border-l border-neutral-dark bg-brand px-6 text-white lg:flex lg:flex-col "
+      class="relative z-10 hidden items-stretch justify-end gap-6 bg-brand px-6 text-white sm:flex sm:flex-col "
     >
       <div class="rotate-180 [writingMode:vertical-rl]">
         <p class="pb-2 text-xxl-500">{name}</p>

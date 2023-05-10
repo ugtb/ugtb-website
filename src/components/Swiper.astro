@@ -2,16 +2,28 @@
 import type { HTMLAttributes } from 'astro/types';
 import { nanoid } from 'nanoid';
 import 'swiper/css';
-import Button from './Button.astro';
+import ButtonIcon from './ButtonIcon.astro';
+import ButtonLink from './ButtonLink.astro';
 import Card from './Card.astro';
 
 interface Props extends HTMLAttributes<'div'> {
-  buttonText: string;
-  buttonHref: string;
   items: any[];
+  cardVariant?: 'default' | 'small' | 'image';
+  navVariant?: 'white' | 'brand';
+  linkText: string;
+  linkHref: string;
+  linkVariant?: 'primary' | 'secondary' | 'tetriary';
 }
 
-const { title, buttonText, buttonHref, items, ...props } = Astro.props;
+const {
+  items,
+  cardVariant = 'default',
+  navVariant = 'white',
+  linkText,
+  linkHref,
+  linkVariant = 'primary',
+  ...props
+} = Astro.props;
 
 const swiperIds = {
   root: `swiper-root-${nanoid(8)}`,
@@ -25,18 +37,26 @@ const swiperIds = {
     {
       items.map(item => (
         <li class="swiper-slide">
-          <Card />
+          <Card variant={cardVariant} />
         </li>
       ))
     }
   </ul>
 
-  <div>
-    <div class="flex justify-between gap-4">
-      <button id={swiperIds.prev}>-</button>
-      <button id={swiperIds.next}>+</button>
+  <div
+    class="mt-12 sm:flex sm:flex-row-reverse sm:items-center sm:justify-between lg:mt-14"
+  >
+    <div class="mb-12 flex justify-between gap-4 px-6 sm:mb-0 sm:px-10">
+      <ButtonIcon id={swiperIds.prev} icon="prev-arrow" variant={navVariant} />
+      <ButtonIcon id={swiperIds.next} icon="next-arrow" variant={navVariant} />
     </div>
-    <Button class="mt-12 sm:ml-18" href={buttonHref}>{buttonText}</Button>
+    {
+      linkText && linkHref && (
+        <ButtonLink href={linkHref} variant={linkVariant}>
+          {linkText}
+        </ButtonLink>
+      )
+    }
   </div>
 </div>
 
@@ -48,10 +68,10 @@ const swiperIds = {
     slidesPerView: 1,
     spaceBetween: 24,
     breakpoints: {
-      1024: {
+      768: {
         slidesPerView: 2,
       },
-      1328: {
+      1440: {
         slidesPerView: 3,
       },
     },

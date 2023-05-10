@@ -21,7 +21,9 @@ const { title = 'УГТБ' } = Astro.props;
   </head>
   <body>
     <Header />
-    <slot />
+    <main class="mt-16">
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>

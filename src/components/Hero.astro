@@ -1,23 +1,23 @@
 ---
-import Button from './Button.astro';
-// inset-x-0  translate-x-5 left-1/2
+import ButtonLink from './ButtonLink.astro';
+import Container from './Container.astro';
 ---
 
-<section
-  class="relative bg-neutral pb-20 pt-28 text-white md:pb-52 md:pt-60 lg:pb-78 lg:pt-88"
->
-  <div class="container lg:text-center">
-    <h1 class="mb-4 text-H4-mobile leading-normal sm:text-H2-desktop lg:mb-8">
+<section class="relative bg-neutral pb-30 pt-30 text-white lg:pb-78 lg:pt-68">
+  <Container class="sm:text-center" left="sm" right="sm">
+    <h1
+      class="mb-4 text-H4-mobile leading-normal sm:text-H2-mobile lg:mb-8 lg:text-H2-desktop"
+    >
       Будівництво та <span class="text-brand">реконструкція</span>
       інфраструктурних <span class="text-brand">об’єктів</span>
     </h1>
-    <p class="mb-8 max-w-3xl text-xl-400 lg:mx-auto lg:mb-10">
+    <p class="mb-8 max-w-3xl text-xl-400 sm:mx-auto lg:mb-10">
       Комплексні системні рішення для будівництва, обслуговування та
       реконструкції об'єктів комунальної, транспортної та промислової
       інфраструктури
     </p>
-    <Button class="mx-auto">Детальніше</Button>
-  </div>
+    <ButtonLink class="mx-auto" href="/">Детальніше</ButtonLink>
+  </Container>
   <div
     class="absolute inset-x-0 bottom-0 left-1/2 border-b-48 border-l-32 border-b-white border-l-transparent lg:left-1/3"
   >

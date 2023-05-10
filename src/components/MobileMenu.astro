@@ -1,19 +1,17 @@
 ---
 import { nanoid } from 'nanoid';
-import Icon from './Icon.astro';
+import Container from '~/components/Container.astro';
+import Icon from '~/components/Icon.astro';
+import { navLinks } from '~/constants';
 
+interface Props extends HTMLAttributes<'div'> {}
+
+const props = Astro.props;
+const currentUrl = Astro.url.pathname;
 const id = nanoid();
-
-const navLinks = [
-  { text: 'Послуги', href: '/', active: false },
-  { text: 'Магазин', href: '/', active: false },
-  { text: 'Проекти', href: '/', active: true },
-  { text: 'Про нас', href: '/', active: false },
-  { text: 'Контакти', href: '/', active: false },
-];
 ---
 
-<div>
+<div {...props}>
   <input id={id} class="peer hidden" type="checkbox" />
   <label
     class="relative z-20 block h-8 w-8 cursor-pointer select-none before:absolute before:inset-x-0 before:top-1/2 before:block before:h-0.5 before:translate-y-1 before:bg-current before:transition-transform after:absolute after:inset-x-0 after:top-1/2 after:block after:h-0.5 after:-translate-y-1 after:bg-current after:transition-transform peer-checked:before:translate-y-0 peer-checked:before:rotate-45 peer-checked:after:translate-y-0 peer-checked:after:-rotate-45"
@@ -26,28 +24,32 @@ const navLinks = [
   <nav
     class="fixed inset-x-0 top-0 z-10 flex min-h-screen -translate-x-full flex-col bg-neutral-dark pb-16 pt-32 opacity-0 transition peer-checked:translate-x-0 peer-checked:opacity-100 sm:pb-24 sm:pt-48"
   >
-    <ul class="container">
-      {
-        navLinks.map(({ text, href, active }) => (
-          <li>
-            <a class="group flex items-center gap-8 py-1" href={href}>
-              {active && (
-                <Icon class="text-brand" name="right-arrow" size={40} />
-              )}
-              <span
-                class:list={[
-                  'text-H3-mobile sm:text-H3-desktop',
-                  active
-                    ? 'text-white'
-                    : 'text-neutral transition group-hover:text-white group-hover:translate-x-[72px]',
-                ]}
-              >
-                {text}
-              </span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <Container left="sm" right="sm">
+      <ul>
+        {
+          navLinks.map(({ text, href }) => (
+            <li>
+              <a class="group flex items-center gap-8 py-1" href={href}>
+                {href === currentUrl && (
+                  <span class="text-brand">
+                    <Icon name="right-arrow" size={40} />
+                  </span>
+                )}
+                <span
+                  class:list={[
+                    'text-H3-mobile sm:text-H3-desktop',
+                    href === currentUrl
+                      ? 'text-white'
+                      : 'text-neutral transition group-hover:text-white group-hover:translate-x-[72px]',
+                  ]}
+                >
+                  {text}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
   </nav>
 </div>

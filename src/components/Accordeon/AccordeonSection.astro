@@ -1,47 +1,15 @@
 ---
-// import Button from './Button.astro';
-// import ButtonIcon from './ButtonIcon.astro';
-// import GoodsGallery from './GoodsGallery';
-
-import { AccordeonCard } from './AccordeonCard';
+import Container from '~/components/Container.astro';
+import Section from '~/components/Section.astro';
 import { AccordeonGallery } from './AccordeonGallery';
 ---
 
-<section class="relative bg-neutral-dark text-white">
-  <div class="container">
-    <div
-      class="pb-22 pt-11 sm:border-l sm:border-neutral-light sm:pb-30 md:pt-30"
-    >
-      <div class="lg:flex lg:justify-between">
-        <h2
-          class="mb-22 max-w-[200px] text-H3-mobile sm:mb-30 sm:max-w-full sm:border-l-4 sm:border-brand sm:px-18 sm:py-6"
-        >
-          Товари <span class="text-brand">Компанії</span>
-        </h2>
-        <p
-          class="mb-22 text-md-400 sm:ml-auto sm:max-w-[328px] md:max-w-[500px] lg:mb-0 lg:ml-0 lg:max-w-[400px]"
-        >
-          Купити матеріали ви зможете у нашому інтернет-магазині за прийнятною
-          ціною. Ми пропонуємо широкий асортимент праймерів та ізоляційних
-          сумішей, штукатурок, рулонів, мастик і сумішей. Купуючи у нас, ви
-          отримуєте недорогі та якісні гідроізоляційні матеріали від перевірених
-          виробників, здатні на 100% впоратися зі своїми виробничими завданнями!
-        </p>
-        <!-- <div class="flex justify-between sm:pl-18 lg:hidden">
-          <ButtonIcon variant="line" icon="left" />
-          <ButtonIcon variant="line" icon="right" />
-        </div> -->
-      </div>
-    </div>
-  </div>
-  <AccordeonGallery />
-  <!-- <AccordeonCard
-    item={{
-      id: '02',
-      name: 'Клейові суміші',
-      subname: 'Polimin - BauGut',
-      description:
-        "Довговічність будь-якого будівельного об'єкта багато в чому залежить від його гідроізоляції. Ми пропонуємо індивідуальні рішення навіть для самих складних проектів. Ми консультуємо і супроводжуємо клієнтів при застосуванні гідроізоляційних матеріалів.",
-    }}
-  /> -->
-</section>
+<Section
+  class="bg-neutral-dark text-white"
+  title="Товари Компанії"
+  description="Купити матеріали ви зможете у нашому інтернет-магазині за прийнятною ціною. Ми пропонуємо широкий асортимент праймерів та ізоляційних сумішей, штукатурок, рулонів, мастик і сумішей. Купуючи у нас, ви отримуєте недорогі та якісні гідроізоляційні матеріали від перевірених виробників, здатні на 100% впоратися зі своїми виробничими завданнями!"
+>
+  <Container>
+    <AccordeonGallery client:load />
+  </Container>
+</Section>
