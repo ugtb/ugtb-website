@@ -1,13 +1,12 @@
 ---
-import BurgerButton from '~/components/BurgerButton.astro';
-import ButtonLink from '~/components/ButtonLink';
-import Container from '~/components/Container.astro';
-import Logo from '~/components/Logo.astro';
-import MobileMenu from '~/components/MobileMenu.astro';
+import ButtonLink from './common/ButtonLink';
+import Container from './common/Container.astro';
+import Logo from './common/Logo.astro';
+import MobileMenu from './MobileMenu.astro';
 ---
 
 <header
-  class="fixed inset-x-0 top-0 z-50 border-b border-neutral bg-neutral-dark/40 text-white backdrop-blur"
+  class="absolute inset-x-0 top-0 z-50 border-b border-neutral bg-neutral-dark/40 text-white backdrop-blur"
 >
   <Container
     class="flex h-16 items-center justify-between gap-8 lg:h-20"

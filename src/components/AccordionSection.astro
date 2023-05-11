@@ -1,0 +1,30 @@
+---
+import Accordion, { type AccordionProps } from './common/Accordion';
+import Container from './common/Container.astro';
+import Section, { type Props as SectionProps } from './common/Section.astro';
+
+interface Props extends SectionProps {
+  accordionProps: AccordionProps;
+}
+
+const {
+  'class': className,
+  'class:list': classList,
+  accordionProps,
+  ...props
+} = Astro.props;
+---
+
+<Section
+  class:list={['bg-neutral-dark text-white', className, classList]}
+  {...props}
+>
+  <Container>
+    <Accordion
+      client:idle
+      navVariant="white"
+      navClass="px-6"
+      {...accordionProps}
+    />
+  </Container>
+</Section>

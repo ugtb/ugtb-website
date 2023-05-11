@@ -1,5 +1,12 @@
 import type { CardInfo } from '~/types';
 
+export const statistics = [
+  { label: 'Років на ринку', value: 20 },
+  { label: 'Завершених проектів', value: 510 },
+  { label: 'Задоволених клієнтів', value: 378 },
+  { label: 'Надійних партнерів', value: 50 },
+];
+
 export const demoGoods: CardInfo[] = [
   {
     title: 'Штукатурки',

@@ -2,14 +2,9 @@
 import type { HTMLAttributes } from 'astro/types';
 import Icon from './Icon';
 
-interface Props extends HTMLAttributes<'a'> {}
+type Props = HTMLAttributes<'a'>;
 
-const {
-  'class': className,
-  'class:list': classList,
-  href = '/',
-  ...props
-} = Astro.props;
+const { 'class': className, 'class:list': classList, ...props } = Astro.props;
 ---
 
 <a
@@ -18,9 +13,8 @@ const {
     classList,
     className,
   ]}
-  href={href}
   {...props}
 >
-  <Icon class="shrink-0" size={28} name="logo" />
+  <Icon class="shrink-0" name="logo" size={28} />
   <slot />
 </a>

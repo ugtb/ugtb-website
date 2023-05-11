@@ -1,7 +1,7 @@
 ---
-import Container from '~/components/Container.astro';
-import Logo from '~/components/Logo.astro';
 import { navLinks } from '~/constants';
+import Container from './common/Container.astro';
+import Logo from './common/Logo.astro';
 
 const currentUrl = Astro.url.pathname;
 ---
@@ -43,7 +43,7 @@ const currentUrl = Astro.url.pathname;
       {
         navLinks.map(({ text, href }) => (
           <li>
-            <a class="text-md-700" href={href} disabled={href===currentUrl}>
+            <a class="text-md-700" href={href} disabled={href === currentUrl}>
               {text}
             </a>
           </li>

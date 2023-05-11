@@ -3,7 +3,7 @@ import type { ComponentProps } from 'preact';
 import Icon from './Icon';
 
 export interface ButtonLinkProps extends ComponentProps<'a'> {
-  variant: 'primary' | 'secondary' | 'tetriary';
+  variant?: 'primary' | 'secondary' | 'tetriary';
 }
 
 export default function ButtonLink({

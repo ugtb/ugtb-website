@@ -1,0 +1,32 @@
+---
+import ButtonLink, { type ButtonLinkProps } from './common/ButtonLink';
+import Container from './common/Container.astro';
+
+interface Props {
+  text: string;
+  linkText: string;
+  linkHref: ButtonLinkProps['href'];
+}
+
+const { text, linkText, linkHref } = Astro.props;
+---
+
+<section class="relative bg-neutral pb-30 pt-44 text-white lg:pb-78 lg:pt-88">
+  <Container class="sm:text-center" left="sm" right="sm">
+    <h1
+      class="mb-4 text-H4-mobile leading-normal sm:text-H2-mobile lg:mb-8 lg:text-H2-desktop"
+    >
+      <slot name="title" />
+    </h1>
+    <p class="mb-8 max-w-3xl text-xl-400 sm:mx-auto lg:mb-10">
+      {text}
+    </p>
+    <ButtonLink class="mx-auto" variant="primary" href={linkHref}>
+      {linkText}
+    </ButtonLink>
+  </Container>
+  <div
+    class="absolute inset-x-0 bottom-0 left-1/2 border-b-48 border-l-32 border-b-white border-l-transparent lg:left-1/3"
+  >
+  </div>
+</section>

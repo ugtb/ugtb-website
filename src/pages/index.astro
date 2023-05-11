@@ -1,41 +1,63 @@
 ---
-import About from '~/components/About.astro';
-import AccordeonSection from '~/components/Accordeon/AccordeonSection.astro';
-import Container from '~/components/Container.astro';
-import Hero from '~/components/Hero.astro';
-import Section from '~/components/Section.astro';
-import Swiper from '~/components/Swiper';
-import { demoGoods } from '~/constants';
+import AboutSection from '~/components/AboutSection.astro';
+import AccordionSection from '~/components/AccordionSection.astro';
+import HeroSection from '~/components/HeroSection.astro';
+import SwiperSection from '~/components/SwiperSection.astro';
+import { demoGoods, statistics } from '~/constants';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 ---
 
 <BaseLayout>
-  <Hero />
-  <About />
-  <AccordeonSection />
+  <HeroSection
+    text="Комплексні системні рішення для будівництва, обслуговування та реконструкції об'єктів комунальної, транспортної та промислової інфраструктури"
+    linkText="Детальніше"
+    linkHref="/"
+  >
+    <Fragment slot="title">
+      Будівництво та <span class="text-brand">реконструкція</span>
+      інфраструктурних <span class="text-brand">об’єктів</span>
+    </Fragment>
+  </HeroSection>
 
-  <Section class="bg-neutral-light" title="Послуги компанії">
-    <Container class="pb-20 lg:pb-30" left="md">
-      <Swiper
-        client:load
-        cardsInfo={demoGoods}
-        cardVariant="default"
-        linkText="Всі послуги"
-        linkHref="/"
-      />
-    </Container>
-  </Section>
+  <AboutSection
+    title="Про компанію"
+    text={'ТОВ "Укргідротрансбуд" має багаторічний досвід у сфері будівництва, обслуговування та реконструкції об\'єктів комунальної, транспортної та промислової інфраструктури, забезпечуючи комплексні системні рішення. Ми завжди відкриті до співпраці з тими, хто шукає надійного та професійного партнера.'}
+    statistics={statistics}
+    linkText="Дізнатись більше"
+    linkHref="/"
+  />
 
-  <Section title="Проекти компанії">
-    <Container class="pb-20 lg:pb-30" left="md">
-      <Swiper
-        client:only="preact"
-        cardsInfo={demoGoods}
-        cardVariant="image"
-        navVariant="brand"
-        linkText="Всі проекти"
-        linkHref="/"
-      />
-    </Container>
-  </Section>
+  <AccordionSection
+    title="Товари компанії"
+    description="Купити матеріали ви зможете у нашому інтернет-магазині за прийнятною ціною. Ми пропонуємо широкий асортимент праймерів та ізоляційних сумішей, штукатурок, рулонів, мастик і сумішей. Купуючи у нас, ви отримуєте недорогі та якісні гідроізоляційні матеріали від перевірених виробників, здатні на 100% впоратися зі своїми виробничими завданнями!"
+    accordionProps={{
+      cardsInfo: demoGoods,
+    }}
+  />
+
+  <SwiperSection
+    class="bg-neutral-light"
+    title="Послуги компанії"
+    swiperProps={{
+      cardVariant: 'default',
+      navVariant: 'white',
+      linkVariant: 'primary',
+      cardsInfo: demoGoods,
+      linkText: 'Всі послуги',
+      linkHref: '/',
+    }}
+  />
+
+  <SwiperSection
+    class="bg-white"
+    title="Проекти компанії"
+    swiperProps={{
+      cardVariant: 'image',
+      navVariant: 'brand',
+      linkVariant: 'primary',
+      cardsInfo: demoGoods,
+      linkText: 'Всі проекти',
+      linkHref: '/',
+    }}
+  />
 </BaseLayout>
