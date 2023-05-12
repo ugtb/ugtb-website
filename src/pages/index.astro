@@ -7,11 +7,11 @@ import { demoGoods, statistics } from '~/constants';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 ---
 
-<BaseLayout>
+<BaseLayout variant="dark">
   <HeroSection
     text="Комплексні системні рішення для будівництва, обслуговування та реконструкції об'єктів комунальної, транспортної та промислової інфраструктури"
     linkText="Детальніше"
-    linkHref="/"
+    linkHref="/services"
   >
     <Fragment slot="title">
       Будівництво та <span class="text-brand">реконструкція</span>
@@ -24,7 +24,7 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
     text={'ТОВ "Укргідротрансбуд" має багаторічний досвід у сфері будівництва, обслуговування та реконструкції об\'єктів комунальної, транспортної та промислової інфраструктури, забезпечуючи комплексні системні рішення. Ми завжди відкриті до співпраці з тими, хто шукає надійного та професійного партнера.'}
     statistics={statistics}
     linkText="Дізнатись більше"
-    linkHref="/"
+    linkHref="/about"
   />
 
   <AccordionSection
@@ -44,7 +44,7 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
       linkVariant: 'primary',
       cardsInfo: demoGoods,
       linkText: 'Всі послуги',
-      linkHref: '/',
+      linkHref: '/services',
     }}
   />
 
@@ -57,7 +57,7 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
       linkVariant: 'primary',
       cardsInfo: demoGoods,
       linkText: 'Всі проекти',
-      linkHref: '/',
+      linkHref: '/projects',
     }}
   />
 </BaseLayout>

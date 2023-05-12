@@ -5,9 +5,11 @@ import { navLinks } from '~/constants';
 import Container from './common/Container.astro';
 import Icon from './common/Icon';
 
-type Props = HTMLAttributes<'div'>;
+interface Props extends HTMLAttributes<'div'> {
+  variant: 'dark' | 'light';
+}
 
-const props = Astro.props;
+const { variant, ...props } = Astro.props;
 const currentUrl = Astro.url.pathname;
 const id = nanoid();
 ---
@@ -22,7 +24,13 @@ const id = nanoid();
   </label>
 
   <nav
-    class="fixed inset-x-0 inset-y-0 flex min-h-screen -translate-x-full flex-col bg-neutral-dark pb-16 pt-32 opacity-0 transition peer-checked:translate-x-0 peer-checked:opacity-100 sm:pb-24 sm:pt-48"
+    class:list={[
+      'fixed inset-x-0 inset-y-0 flex min-h-screen -translate-x-full flex-col pb-16 pt-32 opacity-0 transition peer-checked:translate-x-0 peer-checked:opacity-100 sm:pb-24 sm:pt-48',
+      {
+        'bg-neutral-dark text-white': variant === 'dark',
+        'bg-neutral-soft text-neutral-dark': variant === 'light',
+      },
+    ]}
   >
     <Container left="sm" right="sm">
       <ul>
@@ -39,8 +47,10 @@ const id = nanoid();
                   class:list={[
                     'text-H3-mobile sm:text-H3-desktop',
                     href === currentUrl
-                      ? 'text-white'
-                      : 'text-neutral transition group-hover:text-white group-hover:translate-x-[72px]',
+                      ? variant === 'dark'
+                        ? 'text-current'
+                        : 'text-brand'
+                      : 'text-neutral transition group-hover:text-current group-hover:translate-x-[72px]',
                   ]}
                 >
                   {text}

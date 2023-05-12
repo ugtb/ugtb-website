@@ -65,7 +65,7 @@ export default function Swiper({
 
   const classes = {
     root: clsx(
-      'flex gap-12 overflow-hidden lg:gap-14',
+      'flex gap-12 lg:gap-14',
       {
         'flex-col': variant === 'default',
         'flex-col-reverse': variant === 'alternate',
@@ -77,9 +77,9 @@ export default function Swiper({
 
   return (
     <div class={classes.root}>
-      <swiper-container class="w-full" ref={swiperEl} init="false">
+      <swiper-container class="-my-2 w-full" ref={swiperEl} init="false">
         {cardsInfo.map(info => (
-          <swiper-slide>
+          <swiper-slide class="py-2">
             <Card variant={cardVariant} info={info} />
           </swiper-slide>
         ))}

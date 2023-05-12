@@ -1,0 +1,20 @@
+---
+import Card from '~/components/common/Card';
+import { demoGoods } from '~/constants';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageLayout from '~/layouts/PageLayout.astro';
+---
+
+<BaseLayout variant="light">
+  <PageLayout variant="light" title="Послуги компанії">
+    <ul class="space-y-20">
+      {
+        demoGoods.map(info => (
+          <li>
+            <Card variant="large" info={info} />
+          </li>
+        ))
+      }
+    </ul>
+  </PageLayout>
+</BaseLayout>

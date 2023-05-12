@@ -4,7 +4,7 @@ import type { CardInfo } from '~/types';
 import ButtonLink from './ButtonLink';
 
 export interface CardProps extends ComponentProps<'a'> {
-  variant?: 'default' | 'small' | 'image' | 'accordion';
+  variant?: 'default' | 'small' | 'image' | 'large' | 'large-image';
   info: CardInfo;
 }
 
@@ -15,7 +15,7 @@ export default function Card({
   ...props
 }: CardProps) {
   switch (variant) {
-    case 'accordion':
+    case 'large-image':
       return (
         <div
           class={clsx(
@@ -49,11 +49,42 @@ export default function Card({
         </div>
       );
 
+    case 'large':
+      return (
+        <div class={clsx('flex flex-col gap-10 sm:flex-row', className)}>
+          <div class="relative shrink-0 basis-1/2 pl-24 md:pl-22 lg:pl-20">
+            <p class="absolute -left-0 top-0 text-H0-mobile text-neutral-soft md:-left-8 lg:-left-16 lg:text-H0-desktop">
+              {tag1}
+            </p>
+            <div class="relative h-80 w-full bg-neutral-soft">
+              <img
+                class="absolute inset-x-0 inset-y-0"
+                src={image}
+                alt={title}
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-col items-start justify-between gap-6">
+            <h2 class="text-H5-mobile lg:text-H5-desktop">{title}</h2>
+            <p class="text-neutral">{description}</p>
+            <ButtonLink
+              class="ml-auto"
+              variant="tetriary"
+              href={linkHref}
+              {...props}
+            >
+              {linkText}
+            </ButtonLink>
+          </div>
+        </div>
+      );
+
     case 'image':
       return (
         <a
           class={clsx(
-            'group relative block h-[420px] bg-neutral-soft shadow sm:h-[520px]',
+            'group relative block h-[420px] border border-neutral-400 bg-neutral-soft shadow-md sm:h-[520px]',
             className
           )}
           href={linkHref}
@@ -76,7 +107,10 @@ export default function Card({
     case 'small':
       return (
         <a
-          class={clsx('group block bg-white pl-6 shadow sm:pl-12', className)}
+          class={clsx(
+            'group block border border-neutral-400 bg-white pl-6 shadow-md sm:pl-12',
+            className
+          )}
           href={linkHref}
           aria-label={linkText}
           {...props}
@@ -100,7 +134,12 @@ export default function Card({
 
     default:
       return (
-        <div class={clsx('block bg-white pl-6 shadow sm:pl-12', className)}>
+        <div
+          class={clsx(
+            'block border border-neutral-400 bg-white pl-6 shadow-md sm:pl-12',
+            className
+          )}
+        >
           <div class="relative h-[288px] bg-neutral-soft [clip-path:polygon(0_calc(100%-64px),40px_100%,100%_100%,100%_0,0_0)] sm:h-[352px]">
             <img class="absolute inset-x-0 inset-y-0" src={image} alt={title} />
           </div>

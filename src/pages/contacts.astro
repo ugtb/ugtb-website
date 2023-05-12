@@ -1,7 +1,7 @@
 ---
+import Logo from '~/components/common/Logo.astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import PageLayout from '~/layouts/PageLayout.astro';
-import Logo from '~/components/Logo.astro';
 
 // let map;
 // async function initMap(): Promise<void> {
@@ -32,8 +32,12 @@ import Logo from '~/components/Logo.astro';
 // initMap();
 ---
 
-<BaseLayout>
-  <PageLayout title="Контакти Компанії" slotClass="bg-neutral-light">
+<BaseLayout variant="light">
+  <PageLayout
+    variant="light"
+    title="Контакти Компанії"
+    slotClass="bg-neutral-light"
+  >
     <div class="mb-10 max-w-lg lg:mb-30">
       <h2 class="mb-10 text-H5-mobile text-brand lg:mb-12 lg:text-H5-desktop">
         Ми на мапі
@@ -68,9 +72,9 @@ import Logo from '~/components/Logo.astro';
 </BaseLayout>
 
 <script>
-  var map = L.map('map', {
-    center: [-50.4319, -30.66741],
-    zoom: 13,
-  });
-  console.log('🚧 L:', L);
+  // var map = L.map('map', {
+  //   center: [-50.4319, -30.66741],
+  //   zoom: 13,
+  // });
+  // console.log('🚧 L:', L);
 </script>

@@ -23,7 +23,7 @@ export default function Accordion({
       <div ref={parent} class="sm:flex sm:gap-px">
         {cardsInfo.map((info, i) =>
           currentIndex === i ? (
-            <Card variant="accordion" info={info} />
+            <Card variant="large-image" info={info} />
           ) : (
             <button
               class="relative z-10 hidden items-stretch justify-end gap-6 bg-brand px-6 text-white sm:flex sm:flex-col"
@@ -44,7 +44,7 @@ export default function Accordion({
   ) : (
     <Swiper
       variant="alternate"
-      cardVariant="accordion"
+      cardVariant="large-image"
       navVariant={navVariant}
       navClass={navClass}
       cardsInfo={cardsInfo}

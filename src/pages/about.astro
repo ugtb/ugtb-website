@@ -1,8 +1,22 @@
 ---
+import SwiperSection from '~/components/SwiperSection.astro';
+import { demoGoods } from '~/constants';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import PageLayout from '~/layouts/PageLayout.astro';
 ---
 
-<BaseLayout>
-  <PageLayout title="About Us" />
+<BaseLayout variant="dark">
+  <PageLayout variant="dark" title="Про компанію" subtitle="Швидко і надійно" />
+  <SwiperSection
+    class="bg-neutral-light"
+    title="Останні проекти"
+    swiperProps={{
+      cardVariant: 'image',
+      navVariant: 'white',
+      linkVariant: 'primary',
+      cardsInfo: demoGoods,
+      linkText: 'Всі послуги',
+      linkHref: '/services',
+    }}
+  />
 </BaseLayout>

@@ -3,17 +3,29 @@ import ButtonLink from './common/ButtonLink';
 import Container from './common/Container.astro';
 import Logo from './common/Logo.astro';
 import MobileMenu from './MobileMenu.astro';
+
+interface Props {
+  variant: 'dark' | 'light';
+}
+
+const { variant = 'dark' } = Astro.props;
 ---
 
 <header
-  class="absolute inset-x-0 top-0 z-50 border-b border-neutral bg-neutral-dark/40 text-white backdrop-blur"
+  class:list={[
+    'absolute inset-x-0 top-0 z-50 border-b border-neutral backdrop-blur',
+    {
+      'text-white': variant === 'dark',
+      'text-neutral-dark': variant === 'light',
+    },
+  ]}
 >
   <Container
     class="flex h-16 items-center justify-between gap-8 lg:h-20"
     left="sm"
     right="sm"
   >
-    <Logo class="relative z-50 mr-auto">
+    <Logo class="relative z-50 mr-auto" href="/">
       <span class="sm:hidden">УГТБ</span>
       <span class="hidden sm:inline">УкрГідроТрансБуд</span>
     </Logo>
@@ -23,6 +35,6 @@ import MobileMenu from './MobileMenu.astro';
     <ButtonLink class="hidden lg:block" variant="tetriary" href="/">
       Зв'язатися з нами
     </ButtonLink>
-    <MobileMenu class="ml-8" />
+    <MobileMenu class="ml-8" variant={variant} />
   </Container>
 </header>

@@ -1,7 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 
-const defaultTheme = require('tailwindcss/defaultTheme');
-
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
@@ -56,7 +54,7 @@ module.exports = {
       center: true,
     },
     fontFamily: {
-      primary: ['Raleway', ...defaultTheme.fontFamily.sans],
+      primary: ['Raleway', 'sans-serif'],
     },
     fontSize: {
       'H0-desktop': [
@@ -69,15 +67,19 @@ module.exports = {
       ],
       'H1-desktop': [
         '6rem',
-        { lineHeight: '1', letterSpacing: '-0.375rem', fontWeight: '500' },
+        { lineHeight: '1', letterSpacing: '-0.25rem', fontWeight: '500' },
+      ],
+      'H1-mobile': [
+        '4.5rem',
+        { lineHeight: '1', letterSpacing: '-0.25rem', fontWeight: '500' },
       ],
       'H2-desktop': [
         '4rem',
-        { lineHeight: '1.5', letterSpacing: '0', fontWeight: '700' },
+        { lineHeight: '1', letterSpacing: '-0.125rem', fontWeight: '500' },
       ],
       'H2-mobile': [
         '3.5rem',
-        { lineHeight: '1.5', letterSpacing: '0', fontWeight: '700' },
+        { lineHeight: '1', letterSpacing: '-0.125rem', fontWeight: '500' },
       ],
       'H3-desktop': [
         '3.5rem',
@@ -139,7 +141,7 @@ module.exports = {
 
       'button': [
         '0.875rem',
-        { lineHeight: '1.2', letterSpacing: '0.125rem', fontWeight: '900' },
+        { lineHeight: '1.2', letterSpacing: '0.125rem', fontWeight: '700' },
       ],
     },
     screens: {

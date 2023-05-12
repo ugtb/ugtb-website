@@ -15,4 +15,9 @@ export interface CardInfo {
   image: string;
 }
 
-export type IconName = 'logo' | 'prev-arrow' | 'next-arrow' | 'right-arrow';
+export type IconName =
+  | 'logo'
+  | 'location'
+  | 'prev-arrow'
+  | 'next-arrow'
+  | 'right-arrow';

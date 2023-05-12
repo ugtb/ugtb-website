@@ -19,17 +19,16 @@ const {
 <div
   class:list={[
     'max-w-[1440px] w-full mx-auto md:pl-20',
-    { 'pl-6 md:pl-20': left, 'pr-6 md:pr-20': right },
+    { 'pl-6': left, 'pr-6 md:pr-20': right },
   ]}
 >
   <div
     class:list={[
       {
-        'md:border-l md:border-l-neutral': left === 'md' || left === 'lg',
-        'md:pl-18': left === 'md',
-        'md:pr-18': right === 'md',
-        'md:pl-28': left === 'lg',
-        'md:pr-28': right === 'lg',
+        'md:border-l md:border-l-neutral md:pl-18':
+          left === 'md' || left === 'lg',
+        'lg:pl-28': left === 'lg',
+        'lg:pr-10': right === 'lg',
       },
       className,
       classList,
