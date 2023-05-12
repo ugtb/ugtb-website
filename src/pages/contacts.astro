@@ -1,0 +1,76 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageLayout from '~/layouts/PageLayout.astro';
+import Logo from '~/components/Logo.astro';
+
+// let map;
+// async function initMap(): Promise<void> {
+//   // The location of Ukrgidrotransbud
+//   const position = { lat: -50.4319, lng: 30.66741 };
+
+//   const { Map } = (await google.maps.importLibrary(
+//     'maps'
+//   )) as google.maps.MapsLibrary;
+//   const { AdvancedMarkerElement } = (await google.maps.importLibrary(
+//     'marker'
+//   )) as google.maps.MarkerLibrary;
+
+//   map = new Map(document.getElementById('map') as HTMLElement, {
+//     zoom: 4,
+//     center: position,
+//     mapId: 'DEMO_MAP_ID',
+//   });
+
+//   // The marker, positioned at Uluru
+//   const marker = new AdvancedMarkerElement({
+//     map: map,
+//     position: position,
+//     title: 'Укргідротрансбуд',
+//   });
+// }
+
+// initMap();
+---
+
+<BaseLayout>
+  <PageLayout title="Контакти Компанії" slotClass="bg-neutral-light">
+    <div class="mb-10 max-w-lg lg:mb-30">
+      <h2 class="mb-10 text-H5-mobile text-brand lg:mb-12 lg:text-H5-desktop">
+        Ми на мапі
+      </h2>
+      <p class="text-H5-mobile text-neutral-dark lg:text-H4-desktop">
+        Ми завжди раді Вам у нашому офісі. До нас можна зручно та швидко
+        дістатися з будь-якого району міста.
+      </p>
+    </div>
+    <div class="sm:flex sm:justify-between">
+      <div id="map" class="mb-10 w-full sm:mb-0"></div>
+
+      <div class="text-neutral-dark sm:w-2/5">
+        <Logo class="mb-10">УкрГідроТрансБуд</Logo>
+        <address class="mb-6">
+          <h3 class="mb-2 text-xxl-500 underline">Адреса</h3>
+          <p class="text-xl-400">02099, м.Київ</p>
+          <p class="text-xl-400">вул.Бориспільська, 9</p>
+        </address>
+        <div class="mb-6">
+          <h3 class="mb-2 text-xxl-500 underline">Телефони</h3>
+          <p class="text-xl-400">+38 067 695 37 76</p>
+          <p class="text-xl-400">+38 050 357 36 91</p>
+        </div>
+        <div>
+          <h3 class="mb-2 text-xxl-500 underline">Email</h3>
+          <p class="text-xl-400">ugtb2002@ukr.net</p>
+        </div>
+      </div>
+    </div>
+  </PageLayout>
+</BaseLayout>
+
+<script>
+  var map = L.map('map', {
+    center: [-50.4319, -30.66741],
+    zoom: 13,
+  });
+  console.log('🚧 L:', L);
+</script>
