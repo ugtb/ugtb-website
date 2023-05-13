@@ -11,7 +11,7 @@ const { swiperProps, ...props } = Astro.props;
 ---
 
 <Section {...props}>
-  <Container class="pb-20 lg:pb-30" left="md">
+  <Container class="pb-20" left="md">
     <Swiper client:idle navClass="pr-6" {...swiperProps} />
   </Container>
 </Section>

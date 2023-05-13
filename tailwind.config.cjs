@@ -4,15 +4,9 @@ module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     blur: {
-      DEFAULT: '100px',
+      DEFAULT: '4px',
     },
-    // boxShadow: {
-    //   none: 'none',
-    //   1: '0px 52px 44px rgba(136, 136, 134, 0.2)',
-    //   2: '0px 20px 20px rgba(187, 187, 186, 0.2)',
-    //   3: '0px 60px 68px rgba(31, 31, 30, 0.08)',
-    //   4: '-56px 36px 44px rgba(31, 31, 30, 0.04)',
-    // },
+
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
@@ -141,7 +135,7 @@ module.exports = {
 
       'button': [
         '0.875rem',
-        { lineHeight: '1.2', letterSpacing: '0.125rem', fontWeight: '700' },
+        { lineHeight: '1', letterSpacing: '0.125rem', fontWeight: '700' },
       ],
     },
     screens: {
@@ -152,9 +146,10 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        'hero': "url('')",
-        'logo-white': "url('/bg-logo-white.svg')",
-        'logo-dark': "url('/bg-logo-dark.svg')",
+        'hero':
+          'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("images/hero-bg.jpg")',
+        'logo-white': 'url("icons/bg-logo-white.svg")',
+        'logo-dark': 'url("icons/bg-logo-dark.svg")',
       },
       borderWidth: {
         32: '32px',

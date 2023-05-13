@@ -14,10 +14,11 @@ export default function ButtonLink({
 }: ButtonLinkProps) {
   const classes = {
     a: clsx(
-      'group inline-flex items-center gap-6 px-6 py-4 text-button uppercase border border-solid',
+      'group inline-flex items-center gap-4 px-6 py-4 text-button uppercase border border-solid',
       {
-        'rounded bg-brand text-white border-brand': variant === 'primary',
-        'rounded bg-white text-neutral-dark border-white':
+        'rounded bg-brand text-white border-brand shadow-md':
+          variant === 'primary',
+        'rounded bg-white text-neutral-dark border-white shadow-md':
           variant === 'secondary',
         'rounded-full bg-transparent text-current border-current hover:text-brand transition-colors':
           variant === 'tetriary',
@@ -30,9 +31,7 @@ export default function ButtonLink({
   return (
     <a class={classes.a} {...props}>
       {children}
-      {variant !== 'tetriary' && (
-        <Icon class={classes.icon} name="right-arrow" />
-      )}
+      {variant !== 'tetriary' && <Icon class={classes.icon} name="next" />}
     </a>
   );
 }

@@ -16,7 +16,7 @@ const [firstWord, ...restWords] = (subtitle ?? '').split(' ');
 {
   variant === 'dark' ? (
     <div class="bg-neutral-dark relative">
-      <Container left="sm" right="sm" class="pb-22 lg:pt-105 pt-72 lg:pb-32">
+      <Container left="sm" right="sm" class="pb-32 pt-48 lg:pb-40 lg:pt-60">
         <h1 class="text-xl-500 text-neutral-soft mb-8">{title}</h1>
         <p class="text-H2-mobile lg:text-H2-desktop text-white sm:max-w-[700px]">
           <>
@@ -29,7 +29,7 @@ const [firstWord, ...restWords] = (subtitle ?? '').split(' ');
     </div>
   ) : (
     <div class="border-b-neutral border-b bg-white">
-      <Container left="sm" right="sm" class="pt-46 lg:pb-30 pb-20 lg:pt-56">
+      <Container left="sm" right="sm" class="pb-16 pt-32 lg:pb-20 lg:pt-40">
         <h1 class="text-H2-mobile text-brand lg:text-H2-desktop">{title}</h1>
       </Container>
     </div>

@@ -10,17 +10,17 @@ import PageLayout from '~/layouts/PageLayout.astro';
     title="Контакти Компанії"
     slotClass="bg-neutral-light"
   >
-    <div class="mb-10 max-w-lg lg:mb-30">
+    <div class="mb-10 max-w-lg lg:mb-20">
       <h2 class="mb-10 text-H5-mobile text-brand lg:mb-12 lg:text-H5-desktop">
         Ми на мапі
       </h2>
-      <p class="text-H5-mobile text-neutral-dark lg:text-H4-desktop">
+      <p class="text-H5-mobile text-neutral-dark lg:text-H5-desktop">
         Ми завжди раді Вам у нашому офісі. До нас можна зручно та швидко
         дістатися з будь-якого району міста.
       </p>
     </div>
-    <div class="gap-10 sm:flex sm:justify-between">
-      <div id="map" class="mb-10 w-2/3 sm:mb-0"></div>
+    <div class="sm:flex sm:justify-between sm:gap-10">
+      <div id="map" class="mb-10 min-h-[400px] sm:mb-0 sm:w-2/3"></div>
 
       <div class="ml-auto text-neutral-dark">
         <Logo class="mb-10">УкрГідроТрансБуд</Logo>
@@ -51,7 +51,6 @@ import PageLayout from '~/layouts/PageLayout.astro';
 
 <script type="module">
   var map = L.map('map').setView([50.4319, 30.66741], 13);
-  console.log('🚧 L:', L);
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,

@@ -25,7 +25,7 @@ const id = nanoid();
 
   <nav
     class:list={[
-      'fixed inset-x-0 inset-y-0 flex min-h-screen -translate-x-full flex-col pb-16 pt-32 opacity-0 transition peer-checked:translate-x-0 peer-checked:opacity-100 sm:pb-24 sm:pt-48',
+      'fixed inset-x-0 inset-y-0 flex min-h-screen -translate-x-full flex-col pb-32 pt-48 opacity-0 transition peer-checked:translate-x-0 peer-checked:opacity-100 sm:pb-40 sm:pt-60',
       {
         'bg-neutral-dark text-white': variant === 'dark',
         'bg-neutral-soft text-neutral-dark': variant === 'light',
@@ -37,10 +37,10 @@ const id = nanoid();
         {
           navLinks.map(({ text, href }) => (
             <li>
-              <a class="group flex items-center gap-8 py-1" href={href}>
+              <a class="group flex items-center gap-4 py-1" href={href}>
                 {href === currentUrl && (
                   <span class="text-brand">
-                    <Icon name="right-arrow" size={40} />
+                    <Icon name="next" size={32} />
                   </span>
                 )}
                 <span
@@ -50,7 +50,7 @@ const id = nanoid();
                       ? variant === 'dark'
                         ? 'text-current'
                         : 'text-brand'
-                      : 'text-neutral transition group-hover:text-current group-hover:translate-x-[72px]',
+                      : 'text-neutral transition group-hover:text-current group-hover:translate-x-[48px]',
                   ]}
                 >
                   {text}
