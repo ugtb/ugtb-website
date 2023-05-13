@@ -1,10 +1,14 @@
 ---
+import { getCollection } from 'astro:content';
 import AboutSection from '~/components/AboutSection.astro';
 import AccordionSection from '~/components/AccordionSection.astro';
 import HeroSection from '~/components/HeroSection.astro';
 import SwiperSection from '~/components/SwiperSection.astro';
-import { demoGoods, statistics } from '~/constants';
+import { statistics } from '~/constants';
 import BaseLayout from '~/layouts/BaseLayout.astro';
+
+const services = await getCollection('services');
+const projects = await getCollection('projects');
 ---
 
 <BaseLayout variant="dark">
@@ -28,23 +32,23 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
   />
 
   <AccordionSection
-    title="Товари компанії"
+    title="Послуги компанії"
     description="Купити матеріали ви зможете у нашому інтернет-магазині за прийнятною ціною. Ми пропонуємо широкий асортимент праймерів та ізоляційних сумішей, штукатурок, рулонів, мастик і сумішей. Купуючи у нас, ви отримуєте недорогі та якісні гідроізоляційні матеріали від перевірених виробників, здатні на 100% впоратися зі своїми виробничими завданнями!"
     accordionProps={{
-      cardsInfo: demoGoods,
+      data: services,
     }}
   />
 
   <SwiperSection
     class="bg-neutral-light"
-    title="Послуги компанії"
+    title="Проекти компанії"
     swiperProps={{
       cardVariant: 'default',
       navVariant: 'white',
       linkVariant: 'primary',
-      cardsInfo: demoGoods,
-      linkText: 'Всі послуги',
-      linkHref: '/services',
+      data: projects,
+      linkText: 'Всі проекти',
+      linkHref: '/projects',
     }}
   />
 
@@ -55,7 +59,7 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
       cardVariant: 'image',
       navVariant: 'brand',
       linkVariant: 'primary',
-      cardsInfo: demoGoods,
+      data: projects,
       linkText: 'Всі проекти',
       linkHref: '/projects',
     }}

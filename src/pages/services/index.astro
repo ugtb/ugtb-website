@@ -1,17 +1,19 @@
 ---
+import { getCollection } from 'astro:content';
 import Card from '~/components/common/Card';
-import { demoGoods } from '~/constants';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import PageLayout from '~/layouts/PageLayout.astro';
+
+const services = await getCollection('services');
 ---
 
 <BaseLayout variant="light">
   <PageLayout variant="light" title="Послуги компанії">
     <ul class="space-y-20">
       {
-        demoGoods.map(info => (
+        services.map((data, i) => (
           <li>
-            <Card variant="large" info={info} />
+            <Card variant="large" data={data} number={i + 1} />
           </li>
         ))
       }

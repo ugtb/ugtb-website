@@ -1,5 +1,3 @@
-import type { CardInfo } from '~/types';
-
 export const statistics = [
   { label: 'Років на ринку', value: 20 },
   { label: 'Завершених проектів', value: 510 },
@@ -7,7 +5,7 @@ export const statistics = [
   { label: 'Надійних партнерів', value: 50 },
 ];
 
-export const demoGoods: CardInfo[] = [
+export const demoGoods = [
   {
     title: 'Штукатурки',
     tag1: '01',

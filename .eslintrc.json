@@ -20,6 +20,8 @@
     "sourceType": "module"
   },
 
+  "rules": { "@typescript-eslint/triple-slash-reference": "off" },
+
   "overrides": [
     {
       "files": ["*.astro"],

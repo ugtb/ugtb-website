@@ -17,7 +17,7 @@ export interface SwiperProps {
   cardVariant?: CardProps['variant'];
   navVariant?: ButtonIconProps['variant'];
   linkVariant?: ButtonLinkProps['variant'];
-  cardsInfo: CardInfo[];
+  data: CardInfo[];
   linkText?: string;
   linkHref?: string;
 }
@@ -30,7 +30,7 @@ export default function Swiper({
   cardVariant = 'default',
   navVariant = 'white',
   linkVariant = 'primary',
-  cardsInfo,
+  data,
   linkText,
   linkHref,
 }: SwiperProps) {
@@ -78,9 +78,9 @@ export default function Swiper({
   return (
     <div class={classes.root}>
       <swiper-container class="-my-2 w-full" ref={swiperEl} init="false">
-        {cardsInfo.map(info => (
-          <swiper-slide class="py-2">
-            <Card variant={cardVariant} info={info} />
+        {data.map(item => (
+          <swiper-slide class="h-full py-2">
+            <Card variant={cardVariant} data={item} />
           </swiper-slide>
         ))}
       </swiper-container>

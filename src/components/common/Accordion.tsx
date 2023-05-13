@@ -6,40 +6,42 @@ import Swiper, { type SwiperProps } from './Swiper';
 
 export type AccordionProps = Pick<
   SwiperProps,
-  'cardsInfo' | 'navVariant' | 'navClass'
+  'data' | 'navVariant' | 'navClass'
 >;
 
 export default function Accordion({
-  cardsInfo,
+  data,
   navVariant,
   navClass,
 }: AccordionProps) {
   const isDesktop = useMediaQuery('(min-width: 768px)');
-  const [currentIndex, setCurrentIndex] = useState(cardsInfo.length - 1);
+  const [currentIndex, setCurrentIndex] = useState(data.length - 1);
   const [parent] = useAutoAnimate();
 
   return isDesktop ? (
-    <div class="text-white sm:border-l sm:border-l-neutral">
-      <div ref={parent} class="sm:flex sm:gap-px">
-        {cardsInfo.map((info, i) =>
-          currentIndex === i ? (
-            <Card variant="large-image" info={info} />
-          ) : (
-            <button
-              class="relative z-10 hidden items-stretch justify-end gap-5 bg-brand px-5 text-white sm:flex sm:flex-col"
-              onClick={() => setCurrentIndex(i)}
-            >
-              <div class="rotate-180 [writingMode:vertical-rl]">
-                <p class="pb-2 text-xxl-500">{info.title}</p>
-                <p class="text-left text-xl-500 opacity-40">{info.tag2}</p>
-              </div>
-              <p class="border-t border-t-white py-5 text-xl-500">
-                {info.tag1}
+    <div
+      ref={parent}
+      class="h-[600px] text-white sm:flex sm:gap-px sm:border-l sm:border-l-neutral"
+    >
+      {data.map((item, i) =>
+        currentIndex === i ? (
+          <Card variant="large-image" data={item} number={i + 1} />
+        ) : (
+          <button
+            class="relative z-10 hidden gap-6 overflow-hidden bg-brand px-2 pt-2 text-white sm:flex sm:flex-col sm:items-stretch sm:justify-end"
+            onClick={() => setCurrentIndex(i)}
+          >
+            <div class="">
+              <p class="rotate-180 whitespace-nowrap px-4 pb-4 text-xxl-500 [writing-mode:vertical-rl]">
+                {item.data.shortTitle ?? titleitem.data.title}
               </p>
-            </button>
-          )
-        )}
-      </div>
+            </div>
+            <p class="border-t border-t-white py-4 text-xl-500">
+              {String(i + 1).padStart(2, '0')}
+            </p>
+          </button>
+        )
+      )}
     </div>
   ) : (
     <Swiper
@@ -47,7 +49,7 @@ export default function Accordion({
       cardVariant="large-image"
       navVariant={navVariant}
       navClass={navClass}
-      cardsInfo={cardsInfo}
+      data={data}
     />
   );
 }

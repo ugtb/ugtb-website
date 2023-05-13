@@ -1,3 +1,5 @@
+import type { CardData } from '~/content/config';
+
 export interface Good {
   id: string;
   name: string;
@@ -6,13 +8,10 @@ export interface Good {
 }
 
 export interface CardInfo {
-  title: string;
-  tag1?: string;
-  tag2?: string;
-  description?: string;
-  linkText: string;
-  linkHref: string;
-  image: string;
+  id: string;
+  slug: string;
+  collection: string;
+  data: CardData;
 }
 
 export type IconName =

@@ -3,21 +3,20 @@ import type { CardInfo } from '~/types';
 import Card, { type CardProps } from './Card';
 
 interface Props {
-  variant?: 'default';
   cardVariant?: CardProps['variant'];
-  cardsInfo: CardInfo[];
+  data: CardInfo[];
 }
 
-const { variant = 'default', cardVariant = 'default', cardsInfo } = Astro.props;
+const { cardVariant = 'default', data } = Astro.props;
 ---
 
 <ul
-  class="grid grid-cols-1 gap-y-8 py-20 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-20"
+  class="grid grid-cols-1 gap-y-8 sm:mt-20 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-20 lg:gap-x-20"
 >
   {
-    cardsInfo.map(info => (
+    data.map(item => (
       <li class="sm:odd:-translate-y-10 sm:even:translate-y-10">
-        <Card variant={cardVariant} info={info} />
+        <Card variant={cardVariant} data={item} />
       </li>
     ))
   }

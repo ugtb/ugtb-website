@@ -1,8 +1,10 @@
 ---
+import { getCollection } from 'astro:content';
 import SwiperSection from '~/components/SwiperSection.astro';
-import { demoGoods } from '~/constants';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import PageLayout from '~/layouts/PageLayout.astro';
+
+const projects = await getCollection('projects');
 ---
 
 <BaseLayout variant="dark">
@@ -14,9 +16,9 @@ import PageLayout from '~/layouts/PageLayout.astro';
       cardVariant: 'small',
       navVariant: 'white',
       linkVariant: 'primary',
-      cardsInfo: demoGoods,
+      data: projects,
       linkText: 'Всі послуги',
-      linkHref: '/services',
+      linkHref: '/projects',
     }}
   />
 </BaseLayout>

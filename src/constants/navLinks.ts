@@ -1,11 +1,11 @@
 export const navLinks = [
   {
-    text: 'Послуги',
-    href: '/services',
+    text: 'Головна',
+    href: '/',
   },
   {
-    text: 'Магазин',
-    href: '/',
+    text: 'Послуги',
+    href: '/services',
   },
   {
     text: 'Проекти',
