@@ -87,8 +87,8 @@ export default function Swiper({
 
       <div class="space-y-12 sm:flex sm:flex-row-reverse sm:items-center sm:justify-between sm:space-y-0">
         <div class={classes.nav}>
-          <ButtonIcon ref={prevEl} icon="prev-arrow" variant={navVariant} />
-          <ButtonIcon ref={nextEl} icon="next-arrow" variant={navVariant} />
+          <ButtonIcon ref={prevEl} icon="prev" variant={navVariant} />
+          <ButtonIcon ref={nextEl} icon="next" variant={navVariant} />
         </div>
         {linkText && linkHref && (
           <ButtonLink class={linkClass} href={linkHref} variant={linkVariant}>

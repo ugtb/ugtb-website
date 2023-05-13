@@ -19,13 +19,13 @@ export default function Card({
       return (
         <div
           class={clsx(
-            'relative z-0 h-[640px] bg-neutral sm:flex-grow',
+            'relative z-0 h-[600px] bg-neutral sm:flex-grow',
             className
           )}
         >
           <img class="absolute inset-x-0 inset-y-0" src={image} alt={title} />
           <div class="absolute inset-x-0 inset-y-0 flex max-w-[500px] flex-col justify-end sm:right-auto">
-            <div class="px-6 py-8 sm:px-12">
+            <div class="p-6 sm:p-8">
               {(tag1 || tag2) && (
                 <div class="mb-4 text-md-400">
                   <p class="mr-6 text-xxl-500">{tag1}</p>
@@ -34,10 +34,10 @@ export default function Card({
               )}
               <h3 class="text-H4-mobile lg:text-H4-desktop">{title}</h3>
             </div>
-            <div class="bg-white px-6 py-10 sm:px-12">
+            <div class="bg-white p-6 sm:p-8">
               <p class="text-sm-400 text-neutral-dark">{description}</p>
               <ButtonLink
-                class="mt-10 text-neutral-dark"
+                class="mt-8 text-neutral-dark"
                 variant="tetriary"
                 href={linkHref}
                 {...props}
@@ -56,7 +56,7 @@ export default function Card({
             <p class="absolute -left-0 top-0 text-H0-mobile text-neutral-soft md:-left-8 lg:-left-16 lg:text-H0-desktop">
               {tag1}
             </p>
-            <div class="relative h-80 w-full bg-neutral-soft">
+            <div class="relative h-[360px] w-full bg-neutral-soft">
               <img
                 class="absolute inset-x-0 inset-y-0"
                 src={image}
@@ -84,7 +84,7 @@ export default function Card({
       return (
         <a
           class={clsx(
-            'group relative block h-[420px] border border-neutral-400 bg-neutral-soft shadow-md sm:h-[520px]',
+            'group relative block h-[400px] border border-neutral-400 bg-neutral-soft shadow-md',
             className
           )}
           href={linkHref}
@@ -92,12 +92,12 @@ export default function Card({
           {...props}
         >
           <img class="absolute inset-x-0 inset-y-0" src={image} alt={title} />
-          <div class="absolute inset-x-0 inset-y-0 flex flex-col justify-between gap-4 bg-neutral-soft bg-opacity-40 px-8 py-10 opacity-0 transition-opacity group-hover:opacity-100 sm:gap-8 sm:px-12 sm:py-16">
+          <div class="absolute inset-x-0 inset-y-0 flex flex-col justify-between gap-10 bg-neutral-soft bg-opacity-40 p-10 opacity-0 transition-opacity group-hover:opacity-100">
             <h3 class="text-H5-mobile sm:text-H5-desktop">{title}</h3>
             {(tag1 || tag2) && (
-              <div class="mt-4 flex items-center justify-between gap-4">
-                <p class="text-xl-500 text-brand">{tag1}</p>
-                <p class="text-md-700 uppercase text-neutral">{tag2}</p>
+              <div class="flex items-center justify-between gap-10 text-xl-500">
+                <p class="text-brand">{tag1}</p>
+                <p class="text-neutral">{tag2}</p>
               </div>
             )}
           </div>
@@ -105,58 +105,37 @@ export default function Card({
       );
 
     case 'small':
-      return (
-        <a
-          class={clsx(
-            'group block border border-neutral-400 bg-white pl-6 shadow-md sm:pl-12',
-            className
-          )}
-          href={linkHref}
-          aria-label={linkText}
-          {...props}
-        >
-          <div class="relative h-[192px] bg-neutral-soft [clip-path:polygon(0_calc(100%-64px),40px_100%,100%_100%,100%_0,0_0)]">
-            <img class="absolute inset-x-0 inset-y-0" src={image} alt={title} />
-          </div>
-          <div class="pb-12 pr-6 pt-8 sm:pr-12">
-            <h3 class="text-H5-mobile group-hover:text-brand sm:text-H5-desktop">
-              {title}
-            </h3>
-            {(tag1 || tag2) && (
-              <div class="mt-4 flex items-center justify-between gap-4">
-                <p class="text-brand">{tag1}</p>
-                <p class="uppercase text-neutral">{tag2}</p>
-              </div>
-            )}
-          </div>
-        </a>
-      );
-
+    case 'default':
     default:
       return (
         <div
           class={clsx(
-            'block border border-neutral-400 bg-white pl-6 shadow-md sm:pl-12',
+            'block border border-neutral-400 bg-white pb-8 pl-8 shadow-md',
             className
           )}
         >
-          <div class="relative h-[288px] bg-neutral-soft [clip-path:polygon(0_calc(100%-64px),40px_100%,100%_100%,100%_0,0_0)] sm:h-[352px]">
+          <div
+            class={clsx(
+              'relative bg-neutral-soft [clip-path:polygon(0_calc(100%-64px),40px_100%,100%_100%,100%_0,0_0)]',
+              variant === 'small' ? 'h-[200px]' : 'h-[360px]'
+            )}
+          >
             <img class="absolute inset-x-0 inset-y-0" src={image} alt={title} />
           </div>
-          <div class="pb-12 pr-6 pt-8 sm:pr-12">
+          <div
+            class={clsx(
+              'pr-8 pt-8',
+              variant === 'small' ? 'space-y-4' : 'space-y-6'
+            )}
+          >
             <h3 class="text-H5-mobile sm:text-H5-desktop">{title}</h3>
             {(tag1 || tag2) && (
-              <div class="mt-4 flex items-center justify-between gap-4">
+              <div class="flex items-center justify-between gap-10">
                 <p class="text-brand">{tag1}</p>
                 <p class="uppercase text-neutral">{tag2}</p>
               </div>
             )}
-            <ButtonLink
-              class="mt-8"
-              variant="tetriary"
-              href={linkHref}
-              {...props}
-            >
+            <ButtonLink variant="tetriary" href={linkHref} {...props}>
               {linkText}
             </ButtonLink>
           </div>

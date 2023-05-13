@@ -13,7 +13,7 @@ export default function Icon({ class: className, name, size = 24 }: IconProps) {
       width={size}
       height={size}
       dangerouslySetInnerHTML={{
-        __html: `<use xlink:href=icons.svg#${name}></use>`,
+        __html: `<use xlink:href=icons/icons.svg#${name}></use>`,
       }}
     ></svg>
   );

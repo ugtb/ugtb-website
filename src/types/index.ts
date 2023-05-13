@@ -18,6 +18,8 @@ export interface CardInfo {
 export type IconName =
   | 'logo'
   | 'location'
-  | 'prev-arrow'
-  | 'next-arrow'
-  | 'right-arrow';
+  | 'mobile'
+  | 'email'
+  | 'prev'
+  | 'next'
+  | 'right';
