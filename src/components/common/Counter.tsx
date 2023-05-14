@@ -22,7 +22,7 @@ export default function Counter({ label, value }: CounterProps) {
   }, []);
 
   const startVal = Math.floor(value / 2);
-  const suffix = `${value < 100 ? '+' : ''}`;
+  const suffix = `${value % 10 ? '' : '+'}`;
 
   return (
     <div id="numbers" class="flex w-min flex-col justify-between">

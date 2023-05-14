@@ -1,5 +1,4 @@
 ---
-import Logo from '~/components/common/Logo.astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import PageLayout from '~/layouts/PageLayout.astro';
 ---
@@ -10,31 +9,23 @@ import PageLayout from '~/layouts/PageLayout.astro';
     title="Контакти Компанії"
     slotClass="bg-neutral-light"
   >
-    <div class="mb-10 max-w-lg lg:mb-20">
-      <h2 class="mb-10 text-H5-mobile text-brand lg:mb-12 lg:text-H5-desktop">
-        Ми на мапі
-      </h2>
-      <p class="text-H5-mobile text-neutral-dark lg:text-H5-desktop">
-        Ми завжди раді Вам у нашому офісі. До нас можна зручно та швидко
-        дістатися з будь-якого району міста.
-      </p>
-    </div>
-    <div class="sm:flex sm:justify-between sm:gap-10">
-      <div id="map" class="mb-10 min-h-[400px] sm:mb-0 sm:w-2/3"></div>
-
+    <div class="flex flex-col gap-10 sm:flex-row-reverse sm:justify-between">
       <div class="ml-auto text-neutral-dark">
-        <Logo class="mb-10">УкрГідроТрансБуд</Logo>
         <address class="mb-6">
+          <h2 class="mb-10 text-H5-mobile lg:text-H5-desktop">
+            ТОВ "Укргідротрансбуд"
+          </h2>
           <h3 class="mb-2 text-xxl-500 underline">Адреса</h3>
-          <p class="text-xl-400">02099, м.Київ</p>
-          <p class="text-xl-400">вул.Бориспільська, 9</p>
+          <p class="text-xl-400">
+            м.Київ, вул.Бориспільська 9, корпус 91, офіс 707
+          </p>
         </address>
         <div class="mb-6">
           <h3 class="mb-2 text-xxl-500 underline">Телефони</h3>
-          <a href="tel:+38 067 695 37 76" class="block text-xl-400"
-            >+38 067 695 37 76</a
+          <a href="tel:+380677090846" class="block text-xl-400"
+            >+38 067 709 08 46</a
           >
-          <a href="tel:+38 067 695 37 76" class="block text-xl-400"
+          <a href="tel:+380503573691" class="block text-xl-400"
             >+38 050 357 36 91</a
           >
         </div>
@@ -44,6 +35,17 @@ import PageLayout from '~/layouts/PageLayout.astro';
             >ugtb2002@ukr.net</a
           >
         </div>
+      </div>
+
+      <div class="w-full sm:w-2/3">
+        {
+          false && (
+            <h2 class="text-H5-mobile text-brand lg:text-H5-desktop mb-10 lg:mb-12">
+              Ми на мапі
+            </h2>
+          )
+        }
+        <div id="map" class="min-h-[400px] w-full"></div>
       </div>
     </div>
   </PageLayout>

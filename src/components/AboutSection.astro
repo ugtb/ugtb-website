@@ -14,7 +14,7 @@ const { text, statistics, linkText, linkHref, ...props } = Astro.props;
 ---
 
 <Section
-  class="relative bg-neutral-dark bg-logo-white bg-no-repeat pt-12 text-white [background-size:600px] [background-position:left_calc(50%-150px)_center] sm:[background-position:left_calc(50%-300px)_bottom] md:[background-position:left_calc(50%-450px)_bottom]"
+  class="relative bg-neutral-dark bg-logo-white bg-no-repeat pt-12 text-white [background-position:left_calc(50%-150px)_center] [background-size:600px] sm:[background-position:left_calc(50%-300px)_bottom] md:[background-position:left_calc(50%-450px)_bottom]"
   {...props}
   slotInside
 >
@@ -22,15 +22,17 @@ const { text, statistics, linkText, linkHref, ...props } = Astro.props;
     class="absolute inset-x-0 right-1/2 top-0 border-r-32 border-t-48 border-r-transparent border-t-brand lg:right-2/3"
   >
   </div>
-  <div class="sm:ml-auto sm:max-w-3xl">
-    <div class="mb-16 grid grid-cols-2 sm:grid-cols-4">
+  <div class="sm:ml-auto sm:max-w-[800px]">
+    <div
+      class="mb-16 grid grid-cols-2 gap-10 sm:grid-cols-4 sm:place-content-center"
+    >
       {
         statistics.map(({ label, value }) => (
           <Counter client:load label={label} value={value} />
         ))
       }
     </div>
-    <p class="mb-14 text-xxl-500">{text}</p>
+    <p class="mb-14 text-xl-500 lg:text-xxl-500">{text}</p>
     <ButtonLink variant="secondary" href={linkHref}>{linkText}</ButtonLink>
   </div>
 </Section>

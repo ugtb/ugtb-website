@@ -1,6 +1,6 @@
 ---
 title: Захистні споруди - загальні й індивідуальні
-shortTitle: Захистні споруди SATE.BOX
+shortTitle:
 images:
   - /images/services/05-zahistni-sporudi.jpg
 description:

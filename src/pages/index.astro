@@ -1,19 +1,30 @@
 ---
 import { getCollection } from 'astro:content';
 import AboutSection from '~/components/AboutSection.astro';
-import AccordionSection from '~/components/AccordionSection.astro';
 import HeroSection from '~/components/HeroSection.astro';
 import SwiperSection from '~/components/SwiperSection.astro';
+import Card from '~/components/common/Card';
+import Container from '~/components/common/Container.astro';
+import Section from '~/components/common/Section.astro';
 import { statistics } from '~/constants';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 
 const services = await getCollection('services');
-const projects = await getCollection('projects');
+// const projects = await getCollection('projects');
+
+const files = await Astro.glob('/public/gallery/*');
+const images = files
+  .map(item => item.default.src.split('?')[0].replace('/public', ''))
+  .sort((a, b) => (a < b ? 1 : -1));
+
+const projects = images
+  .slice(0, 10)
+  .map(item => ({ data: { images: [item] } }));
 ---
 
 <BaseLayout variant="dark">
   <HeroSection
-    text="Комплексні системні рішення для будівництва, обслуговування та реконструкції об'єктів комунальної, транспортної та промислової інфраструктури"
+    text="Виконуємо монтаж та ремонт зовнішніх трубопроводів, гідроізоляцію та ремонт стін і фундаментів, облаштовуємо бетонні доріжки, заїзди та майданчики"
     linkText="Детальніше"
     linkHref="/services"
   >
@@ -31,33 +42,26 @@ const projects = await getCollection('projects');
     linkHref="/about"
   />
 
-  <AccordionSection
-    title="Послуги компанії"
-    description="Купити матеріали ви зможете у нашому інтернет-магазині за прийнятною ціною. Ми пропонуємо широкий асортимент праймерів та ізоляційних сумішей, штукатурок, рулонів, мастик і сумішей. Купуючи у нас, ви отримуєте недорогі та якісні гідроізоляційні матеріали від перевірених виробників, здатні на 100% впоратися зі своїми виробничими завданнями!"
-    accordionProps={{
-      data: services,
-    }}
-  />
+  <Section class="bg-white" title="Послуги компанії" left="md" right="md">
+    <Container class="pb-20" left="md" right="md">
+      <ul class="space-y-16 lg:space-y-20">
+        {
+          services.map((data, i) => (
+            <li>
+              <Card variant="large" data={data} number={i + 1} />
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </Section>
 
   <SwiperSection
     class="bg-neutral-light"
-    title="Проекти компанії"
-    swiperProps={{
-      cardVariant: 'default',
-      navVariant: 'white',
-      linkVariant: 'primary',
-      data: projects,
-      linkText: 'Всі проекти',
-      linkHref: '/projects',
-    }}
-  />
-
-  <SwiperSection
-    class="bg-white"
-    title="Проекти компанії"
+    title="Останні проекти"
     swiperProps={{
       cardVariant: 'image',
-      navVariant: 'brand',
+      navVariant: 'white',
       linkVariant: 'primary',
       data: projects,
       linkText: 'Всі проекти',

@@ -64,9 +64,11 @@ export default function Card({
 
     case 'large':
       return (
-        <div class={clsx('flex flex-col gap-10 sm:flex-row', className)}>
-          <div class="relative shrink-0 basis-1/2 pl-24 md:pl-22 lg:pl-20">
-            <p class="absolute -left-0 top-0 text-H0-mobile text-neutral-light md:-left-8 lg:-left-16 lg:text-H0-desktop">
+        <div
+          class={clsx('flex flex-col gap-8 sm:flex-row lg:gap-10', className)}
+        >
+          <div class="relative shrink-0 basis-1/2 pl-22 md:pl-12 lg:pl-20">
+            <p class="absolute -left-0 top-0 text-H1-mobile text-neutral-light md:-left-10 lg:-left-10 lg:text-H1-desktop">
               {numberText}
             </p>
             <div class="w-full bg-neutral-soft">
@@ -74,22 +76,25 @@ export default function Card({
             </div>
           </div>
 
-          <div class="flex flex-col items-start justify-between gap-6">
+          <div class="flex flex-col items-start gap-6">
             <h2 class="text-H5-mobile lg:text-H5-desktop">{title}</h2>
             <p class="text-neutral">{description}</p>
-            <ButtonLink
-              class="ml-auto"
-              variant="tetriary"
-              href={href}
-              {...props}
-            >
-              Детальніше
-            </ButtonLink>
+            {false && (
+              <ButtonLink
+                class="ml-auto"
+                variant="tetriary"
+                href={href}
+                {...props}
+              >
+                Детальніше
+              </ButtonLink>
+            )}
           </div>
         </div>
       );
 
     case 'image':
+      return <img class="h-[400px] shadow-lg" src={image} alt="" />;
       return (
         <a
           class={clsx(
