@@ -1,10 +1,13 @@
 ---
-import { navLinks } from '~/constants';
+import { navLinks } from '~/lib/constants';
+import { formatPhone } from '~/lib/helpers/formatPhone';
+import type { Company } from '~/types';
 import Container from './common/Container.astro';
 import Icon from './common/Icon';
 import Logo from './common/Logo.astro';
 
-const currentUrl = Astro.url.pathname;
+const [company] = await Astro.glob<Company>('/src/content/company.md');
+const { name, addressLines, phones, emails } = company.frontmatter.contacts;
 ---
 
 <footer class="bg-brand pb-8 pt-20 text-white sm:pt-30">
@@ -19,25 +22,53 @@ const currentUrl = Astro.url.pathname;
       </p>
 
       <div class="sm:ml-auto">
-        <Logo class="mb-8" href="/">Укрідротрансбуд</Logo>
+        <Logo class="mb-8" href="/">{name}</Logo>
         <address class="space-y-4 text-lg-400">
           <p class="flex flex-col">
-            <span class="flex items-center gap-2"
-              ><Icon name="location" />
-              м.Київ, вул.Бориспільська 9,</span
-            >
-            <span class="pl-8"> корпус, 91 офіс 707</span>
+            {
+              addressLines.map((line, i) =>
+                i === 0 ? (
+                  <span class="flex items-center gap-2">
+                    <Icon name="location" />
+                    {line}
+                  </span>
+                ) : (
+                  <span class="pl-8">{line}</span>
+                )
+              )
+            }
           </p>
           <p class="flex flex-col">
-            <span class="flex items-center gap-2">
-              <Icon name="mobile" />
-              <a href="tel:+380677090846">+38 067 709 08 46</a>
-            </span>
-            <a class="pl-8" href="tel:+380503573691">+38 050 357 36 91</a>
+            {
+              phones.map((phone, i) =>
+                i === 0 ? (
+                  <span class="flex items-center gap-2">
+                    <Icon name="mobile" />
+                    <a href={`tel:${phone}`}>{formatPhone(phone)}</a>
+                  </span>
+                ) : (
+                  <a class="pl-8" href={`tel:${phone}`}>
+                    {formatPhone(phone)}
+                  </a>
+                )
+              )
+            }
           </p>
           <p class="flex items-center gap-2">
-            <Icon name="email" />
-            <a href="mailto:ugtb2002@ukr.net">ugtb2002@ukr.net</a>
+            {
+              emails.map((email, i) =>
+                i === 0 ? (
+                  <span class="flex items-center gap-2">
+                    <Icon name="email" />
+                    <a href={`mailto:${email}`}>{email}</a>
+                  </span>
+                ) : (
+                  <a class="pl-8" href={`mailto:${email}`}>
+                    {email}
+                  </a>
+                )
+              )
+            }
           </p>
         </address>
       </div>
@@ -49,7 +80,7 @@ const currentUrl = Astro.url.pathname;
       {
         navLinks.map(({ text, href }) => (
           <li>
-            <a class="text-md-700" href={href} disabled={href === currentUrl}>
+            <a class="text-md-700" href={href}>
               {text}
             </a>
           </li>
@@ -57,7 +88,7 @@ const currentUrl = Astro.url.pathname;
       }
     </ul>
     <p class="center text-sm-400 text-neutral-light">
-      Copyright © 2023 УКРГІДРОТРАНСБУД
+      Copyright © 2023 {name.toUpperCase()}
     </p>
   </Container>
 </footer>

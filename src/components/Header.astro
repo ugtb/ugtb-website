@@ -1,14 +1,18 @@
 ---
+import { formatPhone } from '~/lib/helpers/formatPhone';
+import type { Company } from '~/types';
+import MobileMenu from './MobileMenu.astro';
 import ButtonLink from './common/ButtonLink';
 import Container from './common/Container.astro';
 import Logo from './common/Logo.astro';
-import MobileMenu from './MobileMenu.astro';
 
 interface Props {
   variant: 'dark' | 'light';
 }
 
 const { variant = 'dark' } = Astro.props;
+const [company] = await Astro.glob<Company>('/src/content/company.md');
+const { name, shortName, phones } = company.frontmatter.contacts;
 ---
 
 <header
@@ -25,14 +29,12 @@ const { variant = 'dark' } = Astro.props;
     left="sm"
     right="sm"
   >
-    <Logo class="relative mr-auto" href="/">
-      <span class="sm:hidden">УГТБ</span>
-      <span class="hidden sm:inline">УкрГідроТрансБуд</span>
+    <Logo class="relative z-50 mr-auto uppercase" href="/">
+      <span class="sm:hidden">{shortName}</span>
+      <span class="hidden sm:inline">{name}</span>
     </Logo>
-    <a
-      class="hidden text-md-700 sm:block"
-      href="tel:+380677090846"
-      class="block text-xl-400">+38 067 709 08 46</a
+    <a class="hidden text-xl-500 sm:block" href={`tel:${phones?.[0]}`}
+      >{formatPhone(phones?.[0])}</a
     >
     <ButtonLink class="hidden lg:block" variant="tetriary" href="/contacts">
       Зв'язатися з нами

@@ -1,14 +1,6 @@
 ---
-import ButtonLink, { type ButtonLinkProps } from './common/ButtonLink';
+import ButtonLink from './common/ButtonLink';
 import Container from './common/Container.astro';
-
-interface Props {
-  text: string;
-  linkText: string;
-  linkHref: ButtonLinkProps['href'];
-}
-
-const { text, linkText, linkHref } = Astro.props;
 ---
 
 <section
@@ -18,13 +10,16 @@ const { text, linkText, linkHref } = Astro.props;
     <h1
       class="mb-4 text-H4-mobile leading-normal sm:text-H2-desktop lg:mb-8 lg:text-H1-desktop"
     >
-      <slot name="title" />
+      Будівництво та <span class="text-brand">реконструкція</span>
+      інфраструктурних <span class="text-brand">об’єктів</span>
     </h1>
     <p class="mb-8 max-w-3xl text-xl-400 sm:mx-auto lg:mb-10">
-      {text}
+      Виконуємо монтаж та ремонт зовнішніх трубопроводів, гідроізоляцію та
+      ремонт стін і фундаментів, облаштовуємо бетонні доріжки, заїзди та
+      майданчики
     </p>
-    <ButtonLink class="mx-auto" variant="primary" href={linkHref}>
-      {linkText}
+    <ButtonLink class="mx-auto" variant="primary" href="/services">
+      Детальніше
     </ButtonLink>
   </Container>
   <div

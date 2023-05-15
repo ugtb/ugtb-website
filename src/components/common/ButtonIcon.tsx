@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import { forwardRef } from 'preact/compat';
+import { forwardRef, type ComponentProps } from 'preact/compat';
+import type { IconName } from '~/types';
 import Icon from './Icon';
 
 export interface ButtonIconProps extends ComponentProps<'button'> {

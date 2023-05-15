@@ -6,17 +6,21 @@ export interface CounterProps {
 }
 
 export default function Counter({ label, value }: CounterProps) {
-  const valueRef = useRef(null);
+  const valueRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     const initCountUp = async () => {
       const countUpModule = await import('countup.js');
-      new countUpModule.CountUp(valueRef.current, value, {
-        startVal,
-        suffix,
-        enableScrollSpy: true,
-        scrollSpyOnce: true,
-      });
+      new countUpModule.CountUp(
+        valueRef.current as HTMLParagraphElement,
+        value,
+        {
+          startVal,
+          suffix,
+          enableScrollSpy: true,
+          scrollSpyOnce: true,
+        }
+      );
     };
     initCountUp();
   }, []);

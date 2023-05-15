@@ -2,53 +2,36 @@
 import { getCollection } from 'astro:content';
 import AboutSection from '~/components/AboutSection.astro';
 import HeroSection from '~/components/HeroSection.astro';
-import SwiperSection from '~/components/SwiperSection.astro';
-import Card from '~/components/common/Card';
 import Container from '~/components/common/Container.astro';
+import ImageSwiper from '~/components/common/ImageSwiper';
 import Section from '~/components/common/Section.astro';
-import { statistics } from '~/constants';
+import ServiceCard from '~/components/common/ServiceCard.astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
+import { getImages } from '~/lib/helpers';
 
 const services = await getCollection('services');
-// const projects = await getCollection('projects');
+services.sort((a, b) => (a.data.number < b.data.number ? 1 : -1));
 
-const files = await Astro.glob('/public/gallery/*');
-const images = files
-  .map(item => item.default.src.split('?')[0].replace('/public', ''))
-  .sort((a, b) => (a < b ? 1 : -1));
-
-const projects = images
-  .slice(0, 10)
-  .map(item => ({ data: { images: [item] } }));
+const projectImageFiles = await Astro.glob('/src/content/projects/images/*');
+projectImageFiles.sort((a, b) => (a.default.src < b.default.src ? 1 : -1));
+const projectImages = await getImages({
+  files: projectImageFiles.slice(0, 10),
+  width: 500,
+  height: 500,
+});
 ---
 
 <BaseLayout variant="dark">
-  <HeroSection
-    text="Виконуємо монтаж та ремонт зовнішніх трубопроводів, гідроізоляцію та ремонт стін і фундаментів, облаштовуємо бетонні доріжки, заїзди та майданчики"
-    linkText="Детальніше"
-    linkHref="/services"
-  >
-    <Fragment slot="title">
-      Будівництво та <span class="text-brand">реконструкція</span>
-      інфраструктурних <span class="text-brand">об’єктів</span>
-    </Fragment>
-  </HeroSection>
+  <HeroSection />
+  <AboutSection />
 
-  <AboutSection
-    title="Про компанію"
-    text={'ТОВ "Укргідротрансбуд" має багаторічний досвід у сфері будівництва, обслуговування та реконструкції об\'єктів комунальної, транспортної та промислової інфраструктури, забезпечуючи комплексні системні рішення. Ми завжди відкриті до співпраці з тими, хто шукає надійного та професійного партнера.'}
-    statistics={statistics}
-    linkText="Дізнатись більше"
-    linkHref="/about"
-  />
-
-  <Section class="bg-white" title="Послуги компанії" left="md" right="md">
+  <Section title="Послуги компанії" left="md" right="md">
     <Container class="pb-20" left="md" right="md">
       <ul class="space-y-16 lg:space-y-20">
         {
-          services.map((data, i) => (
+          services.map(service => (
             <li>
-              <Card variant="large" data={data} number={i + 1} />
+              <ServiceCard data={service} />
             </li>
           ))
         }
@@ -56,16 +39,15 @@ const projects = images
     </Container>
   </Section>
 
-  <SwiperSection
-    class="bg-neutral-light"
-    title="Останні проекти"
-    swiperProps={{
-      cardVariant: 'image',
-      navVariant: 'white',
-      linkVariant: 'primary',
-      data: projects,
-      linkText: 'Всі проекти',
-      linkHref: '/projects',
-    }}
-  />
+  <Section title="Останні проекти" class="bg-neutral-light">
+    <Container class="pb-20" left="md" right="md">
+      <ImageSwiper
+        client:idle
+        navClass="pr-6"
+        imageClass="max-w-[500px]"
+        buttonProps={{ children: 'Всі проекти', href: '/projects' }}
+        data={projectImages}
+      />
+    </Container>
+  </Section>
 </BaseLayout>

@@ -1,0 +1,56 @@
+---
+import Image from 'astro/components/Image.astro';
+import type { HTMLAttributes } from 'astro/types';
+import type { CollectionEntry } from 'astro:content';
+import ButtonLink from './ButtonLink';
+
+interface Props extends HTMLAttributes<'a'> {
+  data: CollectionEntry<'services'>;
+  buttonLabel?: string;
+}
+
+const {
+  'class': className,
+  'class:list': classList,
+  data,
+  buttonLabel,
+  ...props
+} = Astro.props;
+
+const { number, title, description, image } = data.data;
+---
+
+<div
+  class:list={[
+    'flex flex-col gap-8 sm:flex-row lg:gap-10',
+    classList,
+    className,
+  ]}
+>
+  <div class="relative shrink-0 basis-1/2 pl-22 md:pl-12 lg:pl-20">
+    <p
+      class="absolute -left-0 top-0 text-H1-mobile text-neutral-light md:-left-10 lg:-left-10 lg:text-H1-desktop"
+    >
+      {String(number).padStart(2, '0')}
+    </p>
+    <Image
+      class="h-[360px] w-full shadow-lg"
+      src={image}
+      alt={title}
+      width="500"
+      height="360"
+    />
+  </div>
+
+  <div class="flex flex-col items-start gap-6">
+    <h2 class="text-H5-mobile lg:text-H5-desktop">{title}</h2>
+    <p class="text-neutral">{description}</p>
+    {
+      buttonLabel && (
+        <ButtonLink class="ml-auto" variant="tetriary" {...props}>
+          {buttonLabel}
+        </ButtonLink>
+      )
+    }
+  </div>
+</div>

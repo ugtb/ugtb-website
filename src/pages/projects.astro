@@ -1,0 +1,31 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageLayout from '~/layouts/PageLayout.astro';
+import { getImages } from '~/lib/helpers';
+
+const files = await Astro.glob('/src/content/projects/images/*');
+files.sort((a, b) => (a.default.src < b.default.src ? 1 : -1));
+const images = await getImages({ files, width: 500, height: 500 });
+---
+
+<BaseLayout variant="dark">
+  <PageLayout variant="dark" title="Проекти Компанії">
+    <ul
+      class="grid grid-cols-1 place-items-center gap-y-8 sm:mt-20 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-20 lg:gap-x-20"
+    >
+      {
+        images.map(image => (
+          <li class="max-w-fit sm:odd:-translate-y-10 sm:even:translate-y-10">
+            <img
+              class="aspect-square max-w-[500px] shadow-lg"
+              src={image.src}
+              width={image.width}
+              height={image.height}
+              alt=""
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </PageLayout>
+</BaseLayout>

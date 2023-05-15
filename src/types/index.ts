@@ -1,18 +1,20 @@
-import type { CardData } from '~/content/config';
+export type Image = {
+  src: string;
+  attributes: Record<string, unknown>;
+};
 
-export interface Good {
-  id: string;
-  name: string;
-  subname: string;
-  description: string;
-}
-
-export interface CardInfo {
-  id: string;
-  slug: string;
-  collection: string;
-  data: CardData;
-}
+export type Company = {
+  contacts: {
+    name: string;
+    shortName: string;
+    fullName: string;
+    addressLines?: string[];
+    phones?: string[];
+    emails?: string[];
+    mapLatLng?: [number, number];
+  };
+  statistics: Record<string, number>;
+};
 
 export type IconName =
   | 'logo'

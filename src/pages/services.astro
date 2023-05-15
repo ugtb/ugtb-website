@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import ServiceCard from '~/components/common/ServiceCard.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const services = await getCollection('services');
+services.sort((a, b) => (a.data.number > b.data.number ? 1 : -1));
+---
+
+<BaseLayout variant="dark">
+  <PageLayout variant="dark" title="Послуги компанії">
+    <ul class="space-y-20">
+      {
+        services.map(service => (
+          <li>
+            <ServiceCard data={service} />
+          </li>
+        ))
+      }
+    </ul>
+  </PageLayout>
+</BaseLayout>
