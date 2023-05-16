@@ -1,18 +1,19 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import { formatPhone } from '~/lib/helpers/formatPhone';
-import type { Company } from '~/types';
 import MobileMenu from './MobileMenu.astro';
 import ButtonLink from './common/ButtonLink';
 import Container from './common/Container.astro';
 import Logo from './common/Logo.astro';
 
-interface Props {
+export interface Props {
   variant: 'dark' | 'light';
+  contacts: CollectionEntry<'companies'>['data']['contacts'];
 }
 
-const { variant = 'dark' } = Astro.props;
-const [company] = await Astro.glob<Company>('/src/content/company.md');
-const { name, shortName, phones } = company.frontmatter.contacts;
+const { variant = 'dark', contacts } = Astro.props;
+const { name, shortName, phones } = contacts;
+const phone = phones?.[0];
 ---
 
 <header
@@ -33,9 +34,13 @@ const { name, shortName, phones } = company.frontmatter.contacts;
       <span class="sm:hidden">{shortName}</span>
       <span class="hidden sm:inline">{name}</span>
     </Logo>
-    <a class="hidden text-xl-500 sm:block" href={`tel:${phones?.[0]}`}
-      >{formatPhone(phones?.[0])}</a
-    >
+    {
+      phone && (
+        <a class="text-xl-500 hidden sm:block" href={`tel:${phones?.[0]}`}>
+          {formatPhone(phone)}
+        </a>
+      )
+    }
     <ButtonLink class="hidden lg:block" variant="tetriary" href="/contacts">
       Зв'язатися з нами
     </ButtonLink>

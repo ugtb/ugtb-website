@@ -1,7 +1,7 @@
 import { getImage } from 'astro:assets';
 
 type Options = {
-  files: Record<string, unknown>;
+  files: Record<string, any>[];
   width: number;
   height: number;
 };

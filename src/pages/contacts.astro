@@ -1,20 +1,21 @@
 ---
+import { getEntryBySlug } from 'astro:content';
 import LeafletMap from '~/components/common/LeafletMap';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import PageLayout from '~/layouts/PageLayout.astro';
 import { formatPhone } from '~/lib/helpers/formatPhone';
-import { Company } from '~/types';
 
-const [company] = await Astro.glob<Company>('/src/content/company.md');
+const company = await getEntryBySlug('companies', 'ugtb');
 const { fullName, addressLines, phones, emails, mapLatLng } =
-  company.frontmatter.contacts;
+  company.data.contacts;
 ---
 
-<BaseLayout variant="light">
+<BaseLayout variant="dark">
   <PageLayout
-    variant="light"
+    variant="dark"
     title="Контакти Компанії"
-    slotClass="bg-neutral-light"
+    decorClass="border-b-neutral-soft"
+    slotClass="bg-neutral-soft"
   >
     <div class="flex flex-col gap-10 sm:flex-row-reverse sm:justify-between">
       <div class="ml-auto text-neutral-dark">
@@ -22,29 +23,41 @@ const { fullName, addressLines, phones, emails, mapLatLng } =
           <h2 class="mb-10 text-H5-mobile lg:text-H5-desktop">
             {fullName}
           </h2>
-          <h3 class="mb-2 text-xxl-500 underline">Адреса</h3>
-          {addressLines.map(line => <p class="text-xl-400">{line}</p>)}
+          {
+            addressLines && (
+              <div>
+                <h3 class="text-xxl-500 mb-2 underline">Адреса</h3>
+                {addressLines.map(line => (
+                  <p class="text-xl-400">{line}</p>
+                ))}
+              </div>
+            )
+          }
         </address>
-        <div class="mb-6">
-          <h3 class="mb-2 text-xxl-500 underline">Телефони</h3>
-          {
-            phones.map(phone => (
-              <a href={`tel:${phone}`} class="text-xl-400 block">
-                {formatPhone(phone)}
-              </a>
-            ))
-          }
-        </div>
-        <div>
-          <h3 class="mb-2 text-xxl-500 underline">Email</h3>
-          {
-            emails.map(email => (
-              <a href={`mailto:${email}`} class="text-xl-400">
-                {email}
-              </a>
-            ))
-          }
-        </div>
+        {
+          phones && (
+            <div class="mb-6">
+              <h3 class="text-xxl-500 mb-2 underline">Телефони</h3>
+              {phones.map(phone => (
+                <a href={`tel:${phone}`} class="text-xl-400 block">
+                  {formatPhone(phone)}
+                </a>
+              ))}
+            </div>
+          )
+        }
+        {
+          emails && (
+            <div>
+              <h3 class="text-xxl-500 mb-2 underline">Email</h3>
+              {emails.map(email => (
+                <a href={`mailto:${email}`} class="text-xl-400">
+                  {email}
+                </a>
+              ))}
+            </div>
+          )
+        }
       </div>
 
       <div class="w-full sm:w-2/3">
@@ -55,15 +68,20 @@ const { fullName, addressLines, phones, emails, mapLatLng } =
             </h2>
           )
         }
-        <LeafletMap
-          client:only="preact"
-          class="relative z-0 min-h-[400px] w-full"
-          markerLatLng={mapLatLng}
-        >
-          <p slot="popup">
-            <b>{fullName}</b><br />{addressLines?.join(', ')}
-          </p>
-        </LeafletMap>
+        {
+          mapLatLng && (
+            <LeafletMap
+              client:only="preact"
+              class="relative z-0 min-h-[450px] w-full"
+              markerLatLng={mapLatLng}
+            >
+              <p slot="popup">
+                <br />
+                {addressLines?.join(', ')}
+              </p>
+            </LeafletMap>
+          )
+        }
       </div>
     </div>
   </PageLayout>

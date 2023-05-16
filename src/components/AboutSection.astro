@@ -1,11 +1,14 @@
 ---
-import type { Company } from '~/types';
+import type { CollectionEntry } from 'astro:content';
 import ButtonLink from './common/ButtonLink';
 import Counter from './common/Counter';
 import Section from './common/Section.astro';
 
-const [company] = await Astro.glob<Company>('/src/content/company.md');
-const { statistics } = company.frontmatter;
+interface Props {
+  statistics: CollectionEntry<'companies'>['data']['statistics'];
+}
+
+const { statistics } = Astro.props;
 ---
 
 <Section

@@ -3,7 +3,7 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
-    "verbatimModuleSyntax": true,
+    "importsNotUsedAsValues": "error",
     "skipLibCheck": true,
     "plugins": [
       {

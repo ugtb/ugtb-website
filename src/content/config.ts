@@ -10,4 +10,19 @@ export const collections = {
         description: z.string().optional(),
       }),
   }),
+
+  companies: defineCollection({
+    schema: z.object({
+      contacts: z.object({
+        name: z.string(),
+        shortName: z.string(),
+        fullName: z.string(),
+        addressLines: z.string().array(),
+        phones: z.string().array(),
+        emails: z.string().array(),
+        mapLatLng: z.tuple([z.number(), z.number()]),
+      }),
+      statistics: z.record(z.number()),
+    }),
+  }),
 };

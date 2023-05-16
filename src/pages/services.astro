@@ -9,7 +9,12 @@ services.sort((a, b) => (a.data.number > b.data.number ? 1 : -1));
 ---
 
 <BaseLayout variant="dark">
-  <PageLayout variant="dark" title="Послуги компанії">
+  <PageLayout
+    variant="dark"
+    title="Послуги компанії"
+    decorClass="border-b-neutral-soft"
+    slotClass="bg-neutral-soft"
+  >
     <ul class="space-y-20">
       {
         services.map(service => (

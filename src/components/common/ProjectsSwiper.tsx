@@ -1,38 +1,42 @@
 import clsx from 'clsx';
-import { useEffect, useRef } from 'preact/hooks';
-import { Navigation, type SwiperOptions } from 'swiper';
-import { register } from 'swiper/element';
-import type { Image } from '~/types';
-import ButtonIcon from './ButtonIcon';
-import ButtonLink, { type ButtonLinkProps } from './ButtonLink';
 
-register();
+import { useEffect, useRef } from 'preact/hooks';
+import SwiperClass, { Navigation } from 'swiper';
+import 'swiper/css';
+import type { Image } from '~/types';
+import ButtonIcon, { type ButtonIconProps } from './ButtonIcon';
+import ButtonLink, { type ButtonLinkProps } from './ButtonLink';
+import ProjectCard from './ProjectCard';
 
 export interface SwiperProps {
   class?: string;
   variant?: 'default' | 'alternate';
   navClass?: string;
   navVariant?: ButtonIconProps['variant'];
-  imageClass?: string;
   buttonProps?: ButtonLinkProps;
+  imageClass?: string;
   data: Image[];
 }
 
-export default function Swiper({
+export default function ProjectsSwiper({
   class: className,
   variant = 'default',
   navClass,
   navVariant,
-  imageClass,
   buttonProps,
+  imageClass,
   data,
 }: SwiperProps) {
-  const swiperEl = useRef(null);
+  const swiperEl = useRef<HTMLDivElement>(null);
   const prevEl = useRef<HTMLButtonElement>(null);
   const nextEl = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const swiperOptions: SwiperOptions = {
+    if (!swiperEl.current) {
+      return;
+    }
+
+    new SwiperClass(swiperEl.current, {
       modules: [Navigation],
       cssMode: true,
       grabCursor: true,
@@ -50,10 +54,7 @@ export default function Swiper({
         prevEl: prevEl.current,
         nextEl: nextEl.current,
       },
-    };
-
-    Object.assign(swiperEl.current, swiperOptions);
-    swiperEl.current.initialize();
+    });
   }, []);
 
   return (
@@ -67,18 +68,15 @@ export default function Swiper({
         className
       )}
     >
-      <swiper-container class="-my-2 w-full" ref={swiperEl} init="false">
-        {data.map(({ src, attributes }) => (
-          <swiper-slide class="h-full py-2">
-            <img
-              class={clsx('aspect-square', imageClass)}
-              src={src}
-              alt=""
-              {...attributes}
-            />
-          </swiper-slide>
-        ))}
-      </swiper-container>
+      <div class="swiper w-full" ref={swiperEl}>
+        <ul class="swiper-wrapper">
+          {data.map(image => (
+            <li class="swiper-slide max-w-fit">
+              <ProjectCard imageClass={imageClass} image={image} />
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <div class="space-y-12 sm:flex sm:flex-row-reverse sm:items-center sm:justify-between sm:space-y-0">
         <div class={clsx('flex justify-between gap-4', navClass)}>

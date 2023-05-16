@@ -1,21 +1,26 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntryBySlug } from 'astro:content';
 import AboutSection from '~/components/AboutSection.astro';
 import HeroSection from '~/components/HeroSection.astro';
 import Container from '~/components/common/Container.astro';
-import ImageSwiper from '~/components/common/ImageSwiper';
+import ProjectsSwiper from '~/components/common/ProjectsSwiper';
 import Section from '~/components/common/Section.astro';
 import ServiceCard from '~/components/common/ServiceCard.astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import { getImages } from '~/lib/helpers';
 
+const company = await getEntryBySlug('companies', 'ugtb');
+const { statistics } = company.data;
+
 const services = await getCollection('services');
 services.sort((a, b) => (a.data.number < b.data.number ? 1 : -1));
 
 const projectImageFiles = await Astro.glob('/src/content/projects/images/*');
-projectImageFiles.sort((a, b) => (a.default.src < b.default.src ? 1 : -1));
+const files = projectImageFiles
+  .sort((a, b) => (a.default.src < b.default.src ? 1 : -1))
+  .slice(0, 10);
 const projectImages = await getImages({
-  files: projectImageFiles.slice(0, 10),
+  files,
   width: 500,
   height: 500,
 });
@@ -23,9 +28,9 @@ const projectImages = await getImages({
 
 <BaseLayout variant="dark">
   <HeroSection />
-  <AboutSection />
+  <AboutSection statistics={statistics} />
 
-  <Section title="Послуги компанії" left="md" right="md">
+  <Section title="Послуги компанії" class="bg-neutral-soft">
     <Container class="pb-20" left="md" right="md">
       <ul class="space-y-16 lg:space-y-20">
         {
@@ -41,12 +46,11 @@ const projectImages = await getImages({
 
   <Section title="Останні проекти" class="bg-neutral-light">
     <Container class="pb-20" left="md" right="md">
-      <ImageSwiper
+      <ProjectsSwiper
         client:idle
-        navClass="pr-6"
-        imageClass="max-w-[500px]"
         buttonProps={{ children: 'Всі проекти', href: '/projects' }}
         data={projectImages}
+        imageClass="max-w-[500px]"
       />
     </Container>
   </Section>

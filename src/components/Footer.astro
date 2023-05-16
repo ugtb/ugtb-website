@@ -1,13 +1,17 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import { navLinks } from '~/lib/constants';
 import { formatPhone } from '~/lib/helpers/formatPhone';
-import type { Company } from '~/types';
 import Container from './common/Container.astro';
 import Icon from './common/Icon';
 import Logo from './common/Logo.astro';
 
-const [company] = await Astro.glob<Company>('/src/content/company.md');
-const { name, addressLines, phones, emails } = company.frontmatter.contacts;
+export interface Props {
+  contacts: CollectionEntry<'companies'>['data']['contacts'];
+}
+
+const { contacts } = Astro.props;
+const { name, addressLines, phones, emails } = contacts;
 ---
 
 <footer class="bg-brand pb-8 pt-20 text-white sm:pt-30">
@@ -24,52 +28,58 @@ const { name, addressLines, phones, emails } = company.frontmatter.contacts;
       <div class="sm:ml-auto">
         <Logo class="mb-8" href="/">{name}</Logo>
         <address class="space-y-4 text-lg-400">
-          <p class="flex flex-col">
-            {
-              addressLines.map((line, i) =>
-                i === 0 ? (
-                  <span class="flex items-center gap-2">
-                    <Icon name="location" />
-                    {line}
-                  </span>
-                ) : (
-                  <span class="pl-8">{line}</span>
-                )
-              )
-            }
-          </p>
-          <p class="flex flex-col">
-            {
-              phones.map((phone, i) =>
-                i === 0 ? (
-                  <span class="flex items-center gap-2">
-                    <Icon name="mobile" />
-                    <a href={`tel:${phone}`}>{formatPhone(phone)}</a>
-                  </span>
-                ) : (
-                  <a class="pl-8" href={`tel:${phone}`}>
-                    {formatPhone(phone)}
-                  </a>
-                )
-              )
-            }
-          </p>
-          <p class="flex items-center gap-2">
-            {
-              emails.map((email, i) =>
-                i === 0 ? (
-                  <span class="flex items-center gap-2">
-                    <Icon name="email" />
-                    <a href={`mailto:${email}`}>{email}</a>
-                  </span>
-                ) : (
-                  <a class="pl-8" href={`mailto:${email}`}>
-                    {email}
-                  </a>
-                )
-              )
-            }
-          </p>
+          {
+            addressLines && (
+              <p class="flex flex-col">
+                {addressLines.map((line, i) =>
+                  i === 0 ? (
+                    <span class="flex items-center gap-2">
+                      <Icon name="location" />
+                      {line}
+                    </span>
+                  ) : (
+                    <span class="pl-8">{line}</span>
+                  )
+                )}
+              </p>
+            )
+          }
+          {
+            phones && (
+              <p class="flex flex-col">
+                {phones.map((phone, i) =>
+                  i === 0 ? (
+                    <span class="flex items-center gap-2">
+                      <Icon name="mobile" />
+                      <a href={`tel:${phone}`}>{formatPhone(phone)}</a>
+                    </span>
+                  ) : (
+                    <a class="pl-8" href={`tel:${phone}`}>
+                      {formatPhone(phone)}
+                    </a>
+                  )
+                )}
+              </p>
+            )
+          }
+          {
+            emails && (
+              <p class="flex items-center gap-2">
+                {emails.map((email, i) =>
+                  i === 0 ? (
+                    <span class="flex items-center gap-2">
+                      <Icon name="email" />
+                      <a href={`mailto:${email}`}>{email}</a>
+                    </span>
+                  ) : (
+                    <a class="pl-8" href={`mailto:${email}`}>
+                      {email}
+                    </a>
+                  )
+                )}
+              </p>
+            )
+          }
         </address>
       </div>
     </div>

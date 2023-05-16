@@ -7,7 +7,7 @@ import { useEffect, useRef } from 'preact/hooks';
 interface LeafletMapProps {
   class?: string;
   markerLatLng: [number, number];
-  popup: VNode;
+  popup?: VNode;
 }
 
 export default function LeafletMap({
@@ -17,7 +17,10 @@ export default function LeafletMap({
 }: LeafletMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const map = L.map(mapRef.current, {
+    if (!mapRef.current) {
+      return;
+    }
+    const map = L.map(mapRef.current as HTMLElement, {
       center: markerLatLng,
       zoom: 13,
       zoomControl: false,
@@ -27,7 +30,9 @@ export default function LeafletMap({
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
     const marker = L.marker(markerLatLng).addTo(map);
-    marker.bindPopup(render(popup)).openPopup();
+    if (popup) {
+      marker.bindPopup(render(popup)).openPopup();
+    }
   }, []);
   return <div ref={mapRef} class={className}></div>;
 }
