@@ -25,7 +25,7 @@ const id = nanoid();
 
   <nav
     class:list={[
-      'fixed inset-x-0 inset-y-0 flex min-h-screen -translate-x-full flex-col pb-32 pt-48 opacity-0 transition peer-checked:translate-x-0 peer-checked:opacity-100 sm:pb-40 sm:pt-60',
+      'fixed inset-x-0 inset-y-0 flex min-h-screen -translate-x-full flex-col pb-32 pt-48 opacity-0 transition peer-checked:translate-x-0 peer-checked:opacity-100 sm:pb-40 sm:pt-60 overscroll-none overflow-hidden',
       {
         'bg-neutral-dark text-white': variant === 'dark',
         'bg-neutral-soft text-neutral-dark': variant === 'light',
@@ -33,7 +33,7 @@ const id = nanoid();
     ]}
   >
     <Container left="sm" right="sm">
-      <ul>
+      <ul class="space-y-3">
         {
           navLinks.map(({ text, href }) => (
             <li>
