@@ -7,7 +7,6 @@ import ProjectsSwiper from '~/components/common/ProjectsSwiper';
 import Section from '~/components/common/Section.astro';
 import ServiceCard from '~/components/common/ServiceCard.astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
-import { getImages } from '~/lib/helpers';
 
 const company = await getEntryBySlug('companies', 'ugtb');
 const { statistics } = company.data;
@@ -15,15 +14,8 @@ const { statistics } = company.data;
 const services = await getCollection('services');
 services.sort((a, b) => (a.data.number > b.data.number ? 1 : -1));
 
-const projectImageFiles = await Astro.glob('/src/content/projects/images/*');
-const files = projectImageFiles
-  .sort((a, b) => (a.default.src < b.default.src ? 1 : -1))
-  .slice(0, 10);
-const projectImages = await getImages({
-  files,
-  width: 500,
-  height: 500,
-});
+const projects = await getCollection('projects');
+projects.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
 ---
 
 <BaseLayout variant="dark">
@@ -49,7 +41,7 @@ const projectImages = await getImages({
       <ProjectsSwiper
         client:idle
         buttonProps={{ children: 'Всі проекти', href: '/projects' }}
-        data={projectImages}
+        projects={projects}
         imageClass="max-w-[500px]"
       />
     </Container>

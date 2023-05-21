@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 
+import type { CollectionEntry } from 'astro:content';
 import { useEffect, useRef } from 'preact/hooks';
 import SwiperClass, { Navigation } from 'swiper';
 import 'swiper/css';
-import type { Image } from '~/types';
 import ButtonIcon, { type ButtonIconProps } from './ButtonIcon';
 import ButtonLink, { type ButtonLinkProps } from './ButtonLink';
 import ProjectCard from './ProjectCard';
@@ -15,7 +15,7 @@ export interface SwiperProps {
   navVariant?: ButtonIconProps['variant'];
   buttonProps?: ButtonLinkProps;
   imageClass?: string;
-  data: Image[];
+  projects: CollectionEntry<'projects'>[];
 }
 
 export default function ProjectsSwiper({
@@ -25,7 +25,7 @@ export default function ProjectsSwiper({
   navVariant,
   buttonProps,
   imageClass,
-  data,
+  projects,
 }: SwiperProps) {
   const swiperEl = useRef<HTMLDivElement>(null);
   const prevEl = useRef<HTMLButtonElement>(null);
@@ -70,9 +70,15 @@ export default function ProjectsSwiper({
     >
       <div class="swiper w-full" ref={swiperEl}>
         <ul class="swiper-wrapper">
-          {data.map(image => (
+          {projects.map(({ data }) => (
             <li class="swiper-slide max-w-fit">
-              <ProjectCard imageClass={imageClass} image={image} />
+              <ProjectCard
+                imageClass={imageClass}
+                title={data.title}
+                address={data.address}
+                date={data.date}
+                image={data.images[0]}
+              />
             </li>
           ))}
         </ul>

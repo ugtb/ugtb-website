@@ -11,6 +11,16 @@ export const collections = {
       }),
   }),
 
+  projects: defineCollection({
+    schema: ({ image }) =>
+      z.object({
+        title: z.string(),
+        address: z.string(),
+        date: z.string(),
+        images: image().array(),
+      }),
+  }),
+
   companies: defineCollection({
     schema: z.object({
       contacts: z.object({

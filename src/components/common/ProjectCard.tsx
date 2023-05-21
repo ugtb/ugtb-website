@@ -1,15 +1,21 @@
+import type { CollectionEntry } from 'astro:content';
 import clsx from 'clsx';
-import type { Image } from '~/types';
 
-interface ProjectCardProps {
+export interface ProjectCardProps {
   class?: string;
   imageClass?: string;
-  image: Image;
+  title: CollectionEntry<'projects'>['data']['title'];
+  address: CollectionEntry<'projects'>['data']['address'];
+  date: CollectionEntry<'projects'>['data']['date'];
+  image: CollectionEntry<'projects'>['data']['images'][number];
 }
 
 export default function ProjectCard({
   class: className,
   imageClass,
+  title,
+  address,
+  date,
   image,
 }: ProjectCardProps) {
   return (
@@ -25,16 +31,17 @@ export default function ProjectCard({
           imageClass
         )}
         src={image.src}
-        alt=""
-        {...image.attributes}
+        width="600"
+        height="600"
+        alt={title}
       />
       <div class="absolute inset-x-0 inset-y-0 flex flex-col justify-between gap-10 bg-black/50 p-10 text-white opacity-0 transition-opacity group-hover:opacity-100">
-        <h3 class="-translate-y-full text-H5-mobile transition-transform group-hover:translate-y-0 lg:text-H5-desktop">
-          Ремонт колектора
+        <h3 class="-translate-y-full text-xxl-500 transition-transform group-hover:translate-y-0">
+          {title}
         </h3>
-        <p class="flex translate-y-full items-center justify-between gap-10 transition-transform group-hover:translate-y-0">
-          <span>Київ</span>
-          <span>17 тра 2023</span>
+        <p class="flex translate-y-full justify-between gap-20 text-lg-400 transition-transform group-hover:translate-y-0">
+          <span>{address}</span>
+          <span>{date}</span>
         </p>
       </div>
     </div>
