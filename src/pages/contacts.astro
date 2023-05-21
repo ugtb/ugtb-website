@@ -3,7 +3,7 @@ import { getEntryBySlug } from 'astro:content';
 import LeafletMap from '~/components/common/LeafletMap';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import PageLayout from '~/layouts/PageLayout.astro';
-import { formatPhone } from '~/lib/helpers/formatPhone';
+import { formatPhone } from '~/lib/helpers';
 
 const company = await getEntryBySlug('companies', 'ugtb');
 const { fullName, addressLines, phones, emails, mapLatLng } =

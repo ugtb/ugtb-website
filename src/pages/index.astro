@@ -2,6 +2,7 @@
 import { getCollection, getEntryBySlug } from 'astro:content';
 import AboutSection from '~/components/AboutSection.astro';
 import HeroSection from '~/components/HeroSection.astro';
+import Partners from '~/components/Partners.astro';
 import Container from '~/components/common/Container.astro';
 import ProjectsSwiper from '~/components/common/ProjectsSwiper';
 import Section from '~/components/common/Section.astro';
@@ -21,6 +22,16 @@ projects.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
 <BaseLayout variant="dark">
   <HeroSection />
   <AboutSection statistics={statistics} />
+
+  <Section
+    class="bg-neutral-light"
+    title="Наші партнери"
+    description={'Використовуємо матеріали провідних світових виробників: ТОВ "Сіка Україна", ТОВ "МЦ Баухемі", ТОВ "Кімтек".'}
+  >
+    <Container class="pb-20" left="md" right="md">
+      <Partners />
+    </Container>
+  </Section>
 
   <Section title="Послуги компанії" class="bg-neutral-soft">
     <Container class="pb-20" left="md" right="md">

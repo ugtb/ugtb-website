@@ -23,7 +23,8 @@ const [firstWord, ...restWords] = title.split(' ');
         </h1>
         <div
           class:list={[
-            'border-b-48 border-l-32 absolute inset-x-0 bottom-0 left-1/2 border-b-white border-l-transparent lg:left-1/3',
+            'border-b-48 border-l-32 absolute inset-x-0 bottom-0 left-1/2 border-l-transparent lg:left-1/3',
+            { 'border-b-white': !decorClass },
             decorClass,
           ]}
         />

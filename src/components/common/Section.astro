@@ -36,7 +36,7 @@ const { title, description, slotInside, ...props } = Astro.props;
             ))
         }
       </h2>
-      {description && <p class="text-md-400 max-w-md">{description}</p>}
+      {description && <p class="text-md-400 ml-auto max-w-sm">{description}</p>}
     </div>
     {slotInside && <slot />}
   </Container>
