@@ -19,7 +19,10 @@ const projects = await getCollection('projects');
 projects.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
 ---
 
-<BaseLayout variant="dark">
+<BaseLayout
+  title="Укргідротрансбуд - будівництво та реконструкція інфраструктурних об’єктів"
+  variant="dark"
+>
   <HeroSection />
   <AboutSection statistics={statistics} />
 

@@ -3,8 +3,11 @@ import preact from '@astrojs/preact';
 import tailwind from '@astrojs/tailwind';
 import { defineConfig } from 'astro/config';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://ugtb.kyiv.ua',
   integrations: [
     preact({
       compat: true,
@@ -14,6 +17,7 @@ export default defineConfig({
         applyBaseStyles: false,
       },
     }),
+    sitemap(),
   ],
   vite: {
     ssr: {
