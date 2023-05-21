@@ -86,8 +86,18 @@ export default function ProjectsSwiper({
 
       <div class="space-y-12 sm:flex sm:flex-row-reverse sm:items-center sm:justify-between sm:space-y-0">
         <div class={clsx('flex justify-between gap-4', navClass)}>
-          <ButtonIcon ref={prevEl} icon="prev" variant={navVariant} />
-          <ButtonIcon ref={nextEl} icon="next" variant={navVariant} />
+          <ButtonIcon
+            ref={prevEl}
+            icon="prev"
+            variant={navVariant}
+            aria-label="Назад"
+          />
+          <ButtonIcon
+            ref={nextEl}
+            icon="next"
+            variant={navVariant}
+            aria-label="Вперед"
+          />
         </div>
         {buttonProps && <ButtonLink {...buttonProps} />}
       </div>
