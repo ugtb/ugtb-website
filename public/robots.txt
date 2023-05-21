@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ugtb.kyiv.ua/sitemap-index.xml
