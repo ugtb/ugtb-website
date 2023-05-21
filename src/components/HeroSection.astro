@@ -1,0 +1,29 @@
+---
+import ButtonLink from './common/ButtonLink';
+import Container from './common/Container.astro';
+---
+
+<section
+  class="relative flex min-h-screen items-center justify-stretch bg-neutral bg-hero bg-cover pb-32 pt-48 text-white lg:pb-40 lg:pt-60"
+>
+  <Container class="sm:text-center" left="sm" right="sm">
+    <h1
+      class="mb-4 text-H4-mobile leading-normal sm:text-H2-desktop lg:mb-8 lg:text-H1-desktop"
+    >
+      Будівництво та <span class="text-brand">реконструкція</span>
+      інфраструктурних <span class="text-brand">об’єктів</span>
+    </h1>
+    <p class="mb-8 max-w-3xl text-xl-400 sm:mx-auto lg:mb-10">
+      Виконуємо монтаж та ремонт зовнішніх трубопроводів, гідроізоляцію та
+      ремонт стін і фундаментів, облаштовуємо бетонні доріжки, заїзди та
+      майданчики
+    </p>
+    <ButtonLink class="mx-auto" variant="primary" href="/services">
+      Детальніше
+    </ButtonLink>
+  </Container>
+  <div
+    class="absolute inset-x-0 bottom-0 left-1/2 border-b-48 border-l-32 border-b-white border-l-transparent lg:left-1/3"
+  >
+  </div>
+</section>

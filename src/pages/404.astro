@@ -1,0 +1,19 @@
+---
+import ButtonLink from '~/components/common/ButtonLink';
+import Container from '~/components/common/Container.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+---
+
+<BaseLayout variant="light">
+  <div class="bg-neutral-soft pt-16 sm:pt-20">
+    <Container
+      class="flex flex-col items-center justify-center gap-10 py-30 text-center sm:py-60"
+      left="lg"
+      right="lg"
+    >
+      <p class="text-H0-mobile text-brand-300 lg:text-H0-desktop">404</p>
+      <p class="text-xxl-500 text-neutral">Ой, сторінку не знайдено :(</p>
+      <ButtonLink variant="tetriary" href="/">Перейти на головну</ButtonLink>
+    </Container>
+  </div>
+</BaseLayout>

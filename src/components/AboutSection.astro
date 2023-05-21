@@ -1,0 +1,40 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ButtonLink from './common/ButtonLink';
+import Counter from './common/Counter';
+import Section from './common/Section.astro';
+
+interface Props {
+  statistics: CollectionEntry<'companies'>['data']['statistics'];
+}
+
+const { statistics } = Astro.props;
+---
+
+<Section
+  class="relative bg-neutral-dark bg-logo-white bg-no-repeat pt-12 text-white [background-position:left_calc(50%-150px)_center] [background-size:600px] sm:[background-position:left_calc(50%-300px)_bottom] md:[background-position:left_calc(50%-450px)_bottom]"
+  title="Про компанію"
+  slotInside
+>
+  <div
+    class="absolute inset-x-0 right-1/2 top-0 border-r-32 border-t-48 border-r-transparent border-t-brand lg:right-2/3"
+  >
+  </div>
+  <div class="sm:ml-auto sm:max-w-[800px]">
+    <div class="mb-16 grid grid-cols-2 gap-10 sm:grid-cols-4">
+      {
+        Object.entries(statistics).map(([label, value]) => (
+          <Counter client:load label={label} value={value} />
+        ))
+      }
+    </div>
+    <p class="mb-14 text-xl-500 lg:text-xxl-500">
+      ПП "Укргідротрансбуд" має багаторічний досвід у сфері будівництва,
+      обслуговування та реконструкції об'єктів комунальної, транспортної та
+      промислової інфраструктури, забезпечуючи комплексні системні рішення. Ми
+      завжди відкриті до співпраці з тими, хто шукає надійного та професійного
+      партнера.
+    </p>
+    <ButtonLink variant="secondary" href="/about">Дізнатись більше</ButtonLink>
+  </div>
+</Section>

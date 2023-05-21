@@ -1,0 +1,34 @@
+---
+import '@fontsource/montserrat';
+import { getEntryBySlug } from 'astro:content';
+import Footer from '~/components/Footer.astro';
+import Header, { type Props as HeaderProps } from '~/components/Header.astro';
+import '~/styles/tailwind.css';
+
+interface Props {
+  title?: string;
+  variant?: HeaderProps['variant'];
+}
+
+const company = await getEntryBySlug('companies', 'ugtb');
+const { contacts } = company.data;
+
+const { title = 'УГТБ', variant = 'dark' } = Astro.props;
+---
+
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header variant={variant} contacts={contacts} />
+    <main>
+      <slot />
+    </main>
+    <Footer contacts={contacts} />
+  </body>
+</html>

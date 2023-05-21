@@ -1,0 +1,104 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { navLinks } from '~/lib/constants';
+import { formatPhone } from '~/lib/helpers';
+import Container from './common/Container.astro';
+import Icon from './common/Icon';
+import Logo from './common/Logo.astro';
+
+export interface Props {
+  contacts: CollectionEntry<'companies'>['data']['contacts'];
+}
+
+const { contacts } = Astro.props;
+const { name, addressLines, phones, emails } = contacts;
+---
+
+<footer class="bg-brand pb-8 pt-20 text-white sm:pt-30">
+  <Container left="sm" right="sm">
+    <div
+      class="mb-20 flex flex-col gap-20 sm:flex-row sm:items-start sm:justify-between"
+    >
+      <p
+        class="relative text-H4-mobile sm:w-3/5 md:py-4 md:pl-18 md:before:absolute md:before:inset-y-0 md:before:left-0 md:before:block md:before:w-[5px] md:before:-translate-x-[3px] md:before:bg-current lg:text-H4-desktop"
+      >
+        Шукаєте надійного партнера? Звертайтеся до нас!
+      </p>
+
+      <div class="sm:ml-auto">
+        <Logo class="mb-8" href="/">{name}</Logo>
+        <address class="space-y-4 text-lg-400">
+          {
+            addressLines && (
+              <p class="flex flex-col">
+                {addressLines.map((line, i) =>
+                  i === 0 ? (
+                    <span class="flex items-center gap-2">
+                      <Icon name="location" />
+                      {line}
+                    </span>
+                  ) : (
+                    <span class="pl-8">{line}</span>
+                  )
+                )}
+              </p>
+            )
+          }
+          {
+            phones && (
+              <p class="flex flex-col">
+                {phones.map((phone, i) =>
+                  i === 0 ? (
+                    <span class="flex items-center gap-2">
+                      <Icon name="mobile" />
+                      <a href={`tel:${phone}`}>{formatPhone(phone)}</a>
+                    </span>
+                  ) : (
+                    <a class="pl-8" href={`tel:${phone}`}>
+                      {formatPhone(phone)}
+                    </a>
+                  )
+                )}
+              </p>
+            )
+          }
+          {
+            emails && (
+              <p class="flex items-center gap-2">
+                {emails.map((email, i) =>
+                  i === 0 ? (
+                    <span class="flex items-center gap-2">
+                      <Icon name="email" />
+                      <a href={`mailto:${email}`}>{email}</a>
+                    </span>
+                  ) : (
+                    <a class="pl-8" href={`mailto:${email}`}>
+                      {email}
+                    </a>
+                  )
+                )}
+              </p>
+            )
+          }
+        </address>
+      </div>
+    </div>
+
+    <ul
+      class="mb-12 flex flex-col gap-4 border-t border-white pt-12 sm:mb-10 sm:flex-row sm:gap-8"
+    >
+      {
+        navLinks.map(({ text, href }) => (
+          <li>
+            <a class="text-md-700" href={href}>
+              {text}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="center text-sm-400 text-neutral-light">
+      Copyright © 2023 {name.toUpperCase()}
+    </p>
+  </Container>
+</footer>

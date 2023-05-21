@@ -1,0 +1,65 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { nanoid } from 'nanoid';
+import { navLinks } from '~/lib/constants';
+import Container from './common/Container.astro';
+import Icon from './common/Icon';
+
+interface Props extends HTMLAttributes<'div'> {
+  variant: 'dark' | 'light';
+}
+
+const { variant, ...props } = Astro.props;
+const currentUrl = Astro.url.pathname;
+const id = nanoid();
+---
+
+<div {...props}>
+  <input id={id} class="peer hidden" type="checkbox" />
+  <label
+    class="relative z-20 block h-8 w-8 cursor-pointer select-none before:absolute before:inset-x-0 before:top-1/2 before:block before:h-0.5 before:translate-y-1 before:bg-current before:transition-transform after:absolute after:inset-x-0 after:top-1/2 after:block after:h-0.5 after:-translate-y-1 after:bg-current after:transition-transform peer-checked:before:translate-y-0 peer-checked:before:rotate-45 peer-checked:after:translate-y-0 peer-checked:after:-rotate-45"
+    for={id}
+  >
+    <span class="sr-only">Меню</span>
+  </label>
+
+  <nav
+    class:list={[
+      'fixed inset-x-0 inset-y-0 flex min-h-screen -translate-x-full flex-col pb-32 pt-48 opacity-0 transition peer-checked:translate-x-0 peer-checked:opacity-100 sm:pb-40 sm:pt-60 overscroll-none overflow-hidden',
+      {
+        'bg-neutral-dark text-white': variant === 'dark',
+        'bg-neutral-soft text-neutral-dark': variant === 'light',
+      },
+    ]}
+  >
+    <Container left="sm" right="sm">
+      <ul class="space-y-3">
+        {
+          navLinks.map(({ text, href }) => (
+            <li>
+              <a class="group flex items-center gap-4 py-1" href={href}>
+                {href === currentUrl && (
+                  <span class="text-brand">
+                    <Icon name="next" size={32} />
+                  </span>
+                )}
+                <span
+                  class:list={[
+                    'text-H3-mobile sm:text-H3-desktop',
+                    href === currentUrl
+                      ? variant === 'dark'
+                        ? 'text-current'
+                        : 'text-brand'
+                      : 'text-neutral transition group-hover:text-current group-hover:translate-x-[48px]',
+                  ]}
+                >
+                  {text}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </nav>
+</div>

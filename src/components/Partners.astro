@@ -1,0 +1,39 @@
+---
+import kimtek from '~/assets/kimtek-logo.jpg';
+import bauchemie from '~/assets/mc-bauchemie-logo.png';
+import sika from '~/assets/sika-logo.webp';
+
+const partners = [
+  { image: sika, name: 'Сіка Україна', href: 'https://ukr.sika.com' },
+  {
+    image: bauchemie,
+    name: 'МЦ Баухемі',
+    href: 'https://www.mc-bauchemie.ua',
+  },
+  { image: kimtek, name: 'Кімтек', href: 'http://kimtek.com.ua/ua' },
+];
+---
+
+<ul
+  class="flex flex-col gap-10 text-xxl-500 sm:flex-row sm:items-end sm:justify-around"
+>
+  {
+    partners.map(partner => (
+      <li>
+        <a
+          class="flex items-center gap-2 opacity-80 grayscale filter transition hover:opacity-100 hover:filter-none sm:flex-col"
+          href={partner.href}
+          target="_blank"
+        >
+          <img
+            class="w-[100px]"
+            src={partner.image.src}
+            width="120"
+            alt={partner.name}
+          />
+          {partner.name}
+        </a>
+      </li>
+    ))
+  }
+</ul>

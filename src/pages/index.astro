@@ -1,15 +1,60 @@
 ---
+import { getCollection, getEntryBySlug } from 'astro:content';
+import AboutSection from '~/components/AboutSection.astro';
+import HeroSection from '~/components/HeroSection.astro';
+import Partners from '~/components/Partners.astro';
+import Container from '~/components/common/Container.astro';
+import ProjectsSwiper from '~/components/common/ProjectsSwiper';
+import Section from '~/components/common/Section.astro';
+import ServiceCard from '~/components/common/ServiceCard.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+
+const company = await getEntryBySlug('companies', 'ugtb');
+const { statistics } = company.data;
+
+const services = await getCollection('services');
+services.sort((a, b) => (a.data.number > b.data.number ? 1 : -1));
+
+const projects = await getCollection('projects');
+projects.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout variant="dark">
+  <HeroSection />
+  <AboutSection statistics={statistics} />
+
+  <Section
+    class="bg-neutral-light"
+    title="Наші партнери"
+    description={'Використовуємо матеріали провідних світових виробників: ТОВ "Сіка Україна", ТОВ "МЦ Баухемі", ТОВ "Кімтек".'}
+  >
+    <Container class="pb-20" left="md" right="md">
+      <Partners />
+    </Container>
+  </Section>
+
+  <Section title="Послуги компанії" class="bg-neutral-soft">
+    <Container class="pb-20" left="md" right="md">
+      <ul class="space-y-16 lg:space-y-20">
+        {
+          services.map(service => (
+            <li>
+              <ServiceCard data={service} />
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </Section>
+
+  <Section title="Останні проекти" class="bg-neutral-light">
+    <Container class="pb-20" left="md" right="md">
+      <ProjectsSwiper
+        client:idle
+        buttonProps={{ children: 'Всі проекти', href: '/projects' }}
+        projects={projects}
+        imageClass="max-w-[500px]"
+      />
+    </Container>
+  </Section>
+</BaseLayout>
