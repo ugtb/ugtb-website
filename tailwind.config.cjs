@@ -148,8 +148,8 @@ module.exports = {
       backgroundImage: {
         'hero':
           'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/images/hero-bg.jpg")',
-        'logo-white': 'url("icons/bg-logo-white.svg")',
-        'logo-dark': 'url("icons/bg-logo-dark.svg")',
+        'logo-white': 'url("/icons/bg-logo-white.svg")',
+        'logo-dark': 'url("/icons/bg-logo-dark.svg")',
       },
       borderWidth: {
         32: '32px',

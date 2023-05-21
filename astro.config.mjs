@@ -1,3 +1,4 @@
+import netlify from '@astrojs/netlify/functions';
 import preact from '@astrojs/preact';
 import tailwind from '@astrojs/tailwind';
 import { defineConfig } from 'astro/config';
@@ -5,13 +6,23 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    preact({ compat: true }),
-    tailwind({ config: { applyBaseStyles: false } }),
+    preact({
+      compat: true,
+    }),
+    tailwind({
+      config: {
+        applyBaseStyles: false,
+      },
+    }),
   ],
   vite: {
-    ssr: { noExternal: ['@formkit/auto-animate'] },
+    ssr: {
+      noExternal: ['@formkit/auto-animate'],
+    },
   },
   experimental: {
     assets: true,
   },
+  output: 'server',
+  adapter: netlify(),
 });

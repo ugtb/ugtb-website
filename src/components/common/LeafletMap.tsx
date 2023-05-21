@@ -10,6 +10,8 @@ interface LeafletMapProps {
   popup?: VNode;
 }
 
+L.Icon.Default.imagePath = '/icons/';
+
 export default function LeafletMap({
   class: className,
   markerLatLng,
