@@ -15,6 +15,13 @@
     @apply cursor-pointer select-none;
   }
 
+  a,
+  button,
+  input,
+  label {
+    @apply [-webkit-tap-highlight-color:transparent];
+  }
+
   img {
     @apply block w-full object-cover;
   }

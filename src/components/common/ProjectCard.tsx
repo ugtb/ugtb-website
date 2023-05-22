@@ -19,15 +19,10 @@ export default function ProjectCard({
   image,
 }: ProjectCardProps) {
   return (
-    <div
-      class={clsx(
-        'group relative max-w-fit overflow-hidden shadow-md',
-        className
-      )}
-    >
+    <div class={clsx('group relative overflow-hidden shadow-md', className)}>
       <img
         class={clsx(
-          'aspect-square transition-transform group-hover:scale-[1.01]',
+          'aspect-square w-full transition-transform group-hover:scale-[1.01]',
           imageClass
         )}
         src={image.src}
@@ -35,7 +30,7 @@ export default function ProjectCard({
         height="600"
         alt={title}
       />
-      <div class="absolute inset-x-0 inset-y-0 flex flex-col justify-between gap-10 bg-black/50 p-10 text-white opacity-0 transition-opacity group-hover:opacity-100">
+      <div class="absolute inset-x-0 inset-y-0 flex flex-col justify-between gap-6 bg-black/50 p-6 text-white opacity-0 transition-opacity group-hover:opacity-100 md:gap-10 md:p-10">
         <h3 class="-translate-y-full text-xxl-500 transition-transform group-hover:translate-y-0">
           {title}
         </h3>

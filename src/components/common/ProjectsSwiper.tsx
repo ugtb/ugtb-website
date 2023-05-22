@@ -71,7 +71,7 @@ export default function ProjectsSwiper({
       <div class="swiper w-full" ref={swiperEl}>
         <ul class="swiper-wrapper">
           {projects.map(({ data }) => (
-            <li class="swiper-slide max-w-fit">
+            <li class="swiper-slide">
               <ProjectCard
                 imageClass={imageClass}
                 title={data.title}

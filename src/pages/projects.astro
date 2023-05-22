@@ -26,7 +26,7 @@ const cardProps = projects.reduce<ProjectCardProps[]>((acc, project) => {
     >
       {
         cardProps.map(props => (
-          <li class="max-w-fit sm:odd:-translate-y-10 sm:even:translate-y-10">
+          <li class="sm:odd:-translate-y-10 sm:even:translate-y-10">
             <ProjectCard
               class="aspect-square max-w-[500px] shadow-lg"
               {...props}
