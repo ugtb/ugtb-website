@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { formatPhone } from '~/lib/helpers';
-import MobileMenu from './MobileMenu.astro';
+import MobileMenu from './MobileMenu';
 import ButtonLink from './common/ButtonLink';
 import Container from './common/Container.astro';
 import Logo from './common/Logo.astro';
@@ -11,6 +11,7 @@ export interface Props {
   contacts: CollectionEntry<'companies'>['data']['contacts'];
 }
 
+const currentUrl = Astro.url.pathname;
 const { variant = 'dark', contacts } = Astro.props;
 const { name, shortName, phones } = contacts;
 const phone = phones?.[0];
@@ -44,6 +45,11 @@ const phone = phones?.[0];
     <ButtonLink class="hidden lg:block" variant="tetriary" href="/contacts">
       Зв'язатися з нами
     </ButtonLink>
-    <MobileMenu class="ml-8" variant={variant} />
+    <MobileMenu
+      client:only="preact"
+      class="ml-8"
+      variant={variant}
+      currentUrl={currentUrl}
+    />
   </Container>
 </header>

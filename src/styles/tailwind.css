@@ -11,7 +11,8 @@
     @apply overflow-x-hidden;
   }
 
-  a {
+  a,
+  button {
     @apply cursor-pointer select-none;
   }
 
