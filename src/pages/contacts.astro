@@ -10,7 +10,13 @@ const { fullName, addressLines, phones, emails, mapLatLng } =
   company.data.contacts;
 ---
 
-<BaseLayout title="Укргідротрансбуд - контакти компанії" variant="dark">
+<BaseLayout
+  title="Укргідротрансбуд - контакти компанії"
+  description={`${fullName} - ${addressLines.join(', ')}, ${phones.join(
+    ', '
+  )}, ${emails.join(', ')}`}
+  variant="dark"
+>
   <PageLayout
     variant="dark"
     title="Контакти Компанії"
