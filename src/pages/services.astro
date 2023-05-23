@@ -8,7 +8,11 @@ const services = await getCollection('services');
 services.sort((a, b) => (a.data.number < b.data.number ? -1 : 1));
 ---
 
-<BaseLayout title="Укргідротрансбуд - послуги компанії" variant="dark">
+<BaseLayout
+  title="Укргідротрансбуд - послуги компанії"
+  description="Виконуємо монтаж та ремонт зовнішніх трубопроводів, гідроізоляцію, ремонт та підсилення стін і фундаментів, облаштовуємо бетонні доріжки, заїзди та майданчики."
+  variant="dark"
+>
   <PageLayout
     variant="dark"
     title="Послуги Компанії"

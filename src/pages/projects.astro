@@ -19,7 +19,11 @@ const cardProps = projects.reduce<ProjectCardProps[]>((acc, project) => {
 }, []);
 ---
 
-<BaseLayout title="Укргідротрансбуд - виконані проекти" variant="dark">
+<BaseLayout
+  title="Укргідротрансбуд - виконані проекти"
+  description="Приклади виконаних замовлень. Монтаж зовнішніх трубопроводів і водогонів. Гідроізоляція й хімзахист водопровідних, каналізаційних колодязів і колекторів, різноманітних промислових споруд, в т.ч. тунілів метрополітену. Ремонт, реконструкція стін і фундаментів. Будівництво бетонних доріжок. майданчиків."
+  variant="dark"
+>
   <PageLayout variant="dark" title="Проекти Компанії">
     <ul
       class="grid grid-cols-1 place-items-center gap-y-8 sm:mt-20 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-20 lg:gap-x-20"
