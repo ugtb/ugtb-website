@@ -6,20 +6,27 @@ import Header, { type Props as HeaderProps } from '~/components/Header.astro';
 import '~/styles/tailwind.css';
 
 interface Props {
-  title?: string;
+  title: string;
+  description: string;
   variant?: HeaderProps['variant'];
 }
 
 const company = await getEntryBySlug('companies', 'ugtb');
 const { contacts } = company.data;
 
-const { title = 'Укргідротрансбуд', variant = 'dark' } = Astro.props;
+const { title, description, variant = 'dark' } = Astro.props;
 ---
 
 <html lang="uk">
   <head>
     <meta charset="utf-8" />
-    <!-- <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" /> -->
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <link
       rel="apple-touch-icon"
@@ -46,11 +53,6 @@ const { title = 'Укргідротрансбуд', variant = 'dark' } = Astro.p
     />
     <meta name="msapplication-TileColor" content="#2b5797" />
     <meta name="theme-color" content="#ffffff" />
-
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
   </head>
   <body>
     <Header variant={variant} contacts={contacts} />
