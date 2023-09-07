@@ -1,37 +1,65 @@
 ---
 import kimtek from '~/assets/kimtek-logo.jpg';
 import bauchemie from '~/assets/mc-bauchemie-logo.png';
-import sika from '~/assets/sika-logo.webp';
+import aukso from '~/assets/aukso-logo.png';
+import knuba from '~/assets/knuba-logo.png';
+import ibc from '~/assets/ibc-logo.png';
 
 const partners = [
-  { image: sika, name: 'Сіка Україна', href: 'https://ukr.sika.com' },
+  {
+    image: aukso,
+    name: 'Aukso',
+    fullName: 'ТОВ Aukso Construction',
+    href: 'https://www.aukso-construction.com.ua',
+  },
+  {
+    image: knuba,
+    name: 'КНУБіА',
+    fullName: 'Київський національний університет будівництва і архітектури',
+    href: 'https://www.knuba.edu.ua',
+  },
+  {
+    image: ibc,
+    name: 'ІВС',
+    fullName: 'Інститут хімії високомолекулярних сполук НАН України',
+    href: 'https://www.nas.gov.ua/UA/Org/Pages/default.aspx?OrgID=0000334',
+  },
   {
     image: bauchemie,
     name: 'МЦ Баухемі',
+    fullName: 'ТОВ МЦ Баухемі',
     href: 'https://www.mc-bauchemie.ua',
   },
-  { image: kimtek, name: 'Кімтек', href: 'http://kimtek.com.ua/ua' },
+  {
+    image: kimtek,
+    name: 'Кімтек',
+    fullName: 'ТОВ Кімтек',
+    href: 'http://kimtek.com.ua/ua',
+  },
 ];
 ---
 
 <ul
-  class="flex flex-col gap-10 text-xxl-500 sm:flex-row sm:items-end sm:justify-around"
+  class="flex flex-wrap items-center justify-around gap-20 text-xxl-500 md:flex-row md:items-start"
 >
   {
     partners.map(partner => (
-      <li>
+      <li class="max-w-[150px]  ">
         <a
-          class="flex items-center gap-6 opacity-80 grayscale filter transition hover:opacity-100 hover:filter-none sm:flex-col sm:gap-2"
+          class=" flex flex-col items-center justify-between gap-6 opacity-80 grayscale filter transition hover:opacity-100 hover:filter-none  sm:gap-2"
           href={partner.href}
           target="_blank"
         >
-          <img
-            class="w-[100px]"
-            src={partner.image.src}
-            width="120"
-            alt={partner.name}
-          />
-          {partner.name}
+          <div class="flex flex-col items-center justify-end">
+            <img
+              class="mb-6 aspect-[4/3] w-[120px] object-contain"
+              src={partner.image.src}
+              width="120"
+              alt={partner.name}
+            />
+            <p>{partner.name}</p>
+          </div>
+          <p class="w-full text-center text-[12px]">{partner.fullName}</p>
         </a>
       </li>
     ))
