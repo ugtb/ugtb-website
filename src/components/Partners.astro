@@ -4,6 +4,7 @@ import bauchemie from '~/assets/mc-bauchemie-logo.png';
 import aukso from '~/assets/aukso-logo.png';
 import knuba from '~/assets/knuba-logo.png';
 import ibc from '~/assets/ibc-logo.png';
+import partner from '~/assets/partner-logo.png';
 
 const partners = [
   {
@@ -36,6 +37,12 @@ const partners = [
     fullName: 'ТОВ Кімтек',
     href: 'http://kimtek.com.ua/ua',
   },
+  {
+    image: partner,
+    name: 'Моноліт-Полімер',
+    fullName: ' ТОВ Моноліт-Полімер',
+    href: 'https://monolit-polimer.uaprom.net/ua/',
+  },
 ];
 ---
 
@@ -44,7 +51,7 @@ const partners = [
 >
   {
     partners.map(partner => (
-      <li class="max-w-[150px]  ">
+      <li class="max-w-[200px]  ">
         <a
           class=" flex flex-col items-center justify-between gap-6 opacity-80 grayscale filter transition hover:opacity-100 hover:filter-none  sm:gap-2"
           href={partner.href}
